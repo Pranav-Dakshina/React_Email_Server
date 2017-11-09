@@ -1,0 +1,170 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(Muskaters.ttf) format('truetype');
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: url(back3.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+
+.thabpet {
+  /*color: #292929;*/
+  color: black;
+  font-family: myFirstFont;
+  font-size: 40px;
+}
+
+.form {
+  height: 100%;
+  width: 80%;
+  margin-top: 40%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media (orientation: landscape) {
+  .form {
+    margin-top: 5% !important;
+  }
+}
+
+.login-err {
+  width: 80%;
+  margin: 0 10px 10px;
+  color: white;
+  display: block;
+  float: left;
+}
+#SignUp, #SignIn {
+  margin-bottom: 10px;
+}
+#SignUp {
+  float: left;
+}
+#SignIn {
+  margin-left: 90%;
+}
+
+#signInImg {
+  -webkit-filter: contrast(140%);
+          filter: contrast(140%);
+}
+
+#signInImg:hover {
+  -webkit-filter: contrast(160%);
+          filter: contrast(160%);
+}
+
+#signUpImg {
+  opacity: 0.6;
+}
+
+#signUpImg:hover {
+  opacity: 1;
+}
+
+#formSignUp {
+  display: none;
+  margin-top: 20% !important;
+}
+
+@media (orientation: landscape) {
+  #formSignUp {
+    margin-top: 0% !important;
+  }
+}
+
+.inp {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.8em;
+  color: white;
+  background: rgba(225, 225, 225, 0.1);
+          transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+
+.inp:focus {
+  background: #FFFFFF;
+          transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  color: #777777;
+}
+
+.inp::placeholder {
+  color: white;
+}
+
+span {
+  font: 0.9em Arial;
+}
+
+.err-msg {
+  color: white;
+  position: relative;
+  width: 100%;
+}
+
+.submit {
+  display: none;
+}
+
+@-webkit-keyframes popin {
+  from {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes popin {
+  from {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes popout {
+  from {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes popout {
+  from {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
