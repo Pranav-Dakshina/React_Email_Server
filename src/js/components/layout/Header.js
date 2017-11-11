@@ -1,18 +1,19 @@
-import React from "react";
-
+import React from "react"
+import { Link} from "react-router-dom"
 
 export default class Header extends React.Component {
-
-  loadHome() {
-    window.location.href = 'https://thabpet.com/';
+  constructor() {
+    super();
+    this.refreshPage = this.refreshPage.bind(this);
   }
-
+  refreshPage() {
+    window.location.reload();
+  }
   render() {
-
     return (
       <header>
-        <div class="thabpet" onclick={this.loadHome.bind(this)} >
-          Thabpet
+        <div class="thabpet" onClick={this.refreshPage}>
+             Thabpet
         </div>
       </header>
     );

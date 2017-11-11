@@ -7,7 +7,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 // const Comb = require('csscomb');
-// var comb = new Comb('zen');
+// var comb = new Comb('./csscomb.json');
 // comb.processPath('public/css');
 
 require('./database.js');
@@ -43,6 +43,7 @@ app.use(express.static('./public/css'));
 app.use(express.static('./public/fonts'));
 app.use(express.static('./public/images'));
 app.use(express.static('./public/js'));
+app.use(express.static('./node_modules'));
 
 app.set('views', './src');
 app.set('view engine', 'ejs');
@@ -53,7 +54,7 @@ app.use(bodyparser.urlencoded(
 }));
 app.use(bodyparser.json());
 
-app.get('/', function(req, res)
+app.get("*", function(req, res)
 {
   res.render('index');
 });

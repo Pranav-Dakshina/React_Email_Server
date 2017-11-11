@@ -20,7 +20,7 @@ export function loginAuthenticate(username, password)
       dispatch(
       {
         type: "LOGIN_AUTHENTICATION",
-        payload: axios.post("/auth/signin", data)
+        payload: axios.post("/auth/signin", data),
       });
 
       // axios.post("/auth/signin", data)

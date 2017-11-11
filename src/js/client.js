@@ -1,14 +1,16 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import {Provider} from "react-redux"
-// import { Router, Route, IndexRoute, hashHistory } from "react-router";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import Login from "./pages/Login"
+import Index from "./pages/Index"
 import store from "./store"
 
 const app = document.getElementById('app')
 
 ReactDOM.render(
   <Provider store={store}>
-      <Login/>
+    <BrowserRouter>
+      <Index />
+    </BrowserRouter>
   </Provider>, app);

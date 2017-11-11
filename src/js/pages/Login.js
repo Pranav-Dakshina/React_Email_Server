@@ -1,14 +1,11 @@
 import React from "react"
-import ReactDOM from "react-dom"
-// import {Link} from "react-router";
 import {connect} from "react-redux"
-import {OverlayTrigger, Tooltip} from "react-bootstrap"
+import { Redirect, Link } from "react-router-dom"
+import { Tooltip } from "reactstrap"
 
-import {loginAuthenticate} from "../actions/signInActions.js"
-import {submitSignUp} from "../actions/signUpActions.js"
+import {loginAuthenticate} from "../actions/signInActions"
+import {submitSignUp} from "../actions/signUpActions"
 
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
 import Input from "../components/layout/Input";
 
 @connect((store) => {
@@ -18,6 +15,7 @@ import Input from "../components/layout/Input";
 export default class Login extends React.Component {
   constructor() {
     super();
+
     this.popin = {
       animation: "popin 0.3s ease-in",
       display: "block"
@@ -28,14 +26,15 @@ export default class Login extends React.Component {
     };
     this.state = {
       toggleSignInDisplay: true,
+      TooltipSignIn: false,
+      TooltipSignUp: false,
       show: true
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-    this.loginAuth = this.loginAuth.bind(this);
     this.formSubmit = this.formSubmit.bind(this);
     this.formSignUp = this.formSignUp.bind(this);
-    this.togglePop = this.togglePop.bind(this);
+    this.toggleSignUpPop = this.toggleSignUpPop.bind(this);
+    this.toggleSignInPop = this.toggleSignInPop.bind(this);
   }
 
   handleClick() {
@@ -45,17 +44,9 @@ export default class Login extends React.Component {
     });
   }
 
-  loginAuth() {
-    this.props.dispatch(loginAuthenticate(this.props.user.username, this.props.user.password));
-  }
-
-  handleInput(event) {
-    console.log(event.target);
-  }
-
   formSubmit(event) {
     event.preventDefault();
-    alert("Success");
+    this.props.dispatch(loginAuthenticate(this.props.user.username, this.props.user.password));
   }
 
   formSignUp(event) {
@@ -69,34 +60,33 @@ export default class Login extends React.Component {
     this.props.dispatch(submitSignUp(data));
   }
 
-  togglePop() {
+  toggleSignUpPop() {
     this.setState({
-      show: !this.state.show
+      TooltipSignUp: !this.state.TooltipSignUp,
+    });
+  }
+
+  toggleSignInPop() {
+    this.setState({
+      TooltipSignIn: !this.state.TooltipSignIn,
     });
   }
 
   render() {
-    const signUpStyle = {
-      width: "30px",
-      height: "30px"
-    };
-
-    const signInStyle = {
+    const iconStyle = {
       width: "30px",
       height: "30px",
-      opacity: "1"
     };
 
     const tooltipStyle = {
-      ...this.props.style,
       position: 'absolute',
       backgroundColor: 'transparent',
       color: 'white',
-      fontWeight: '300',
-      textShadow: '2px 2px 4px #000000',
-      marginLeft: -5,
-      marginTop: 0,
-      padding: 10
+      fontWeight: '400',
+      textShadow: '2px 2px 2px #000000',
+      marginLeft: -150,
+      marginTop: -50,
+      width: 150,
     }
 
     const signUpTooltip = (
@@ -113,44 +103,37 @@ export default class Login extends React.Component {
 
     return (
       <div>
-
-        <Header/>
-
+        {this.props.user.id != null ? <Redirect to="/mail"/> : " "}
         <div>
-          <div class="container">
-            <form class="form" id="formSignIn" name="signInForm" onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
-              ? this.popin
-              : this.popout} noValidate>
-              <div class="login-err"></div>
-              <div name="SignUp" id="SignUp">
-                <OverlayTrigger placement="top" overlay={signUpTooltip}>
-                  <img id="signUpImg" src="signUp.png" alt="" onClick={this.handleClick} style={signUpStyle}/>
-                </OverlayTrigger>
-              </div>
-              <Input id="username" name="Username" type="text"/>
-              <Input id="passsword" name="Password" type="password"/>
-              <button class="btn btn-primary" type="submit">Submit</button>
-            </form>
-            <form class="form" id="formSignUp" name="signUpForm" onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
-              ? this.popout
-              : this.popin} noValidate>
-              <div name="SignIn" id="SignIn">
-                <OverlayTrigger placement="top" overlay={signInTooltip}>
-                  <img id="signInImg" src="signIn.png" alt="" onClick={this.handleClick} style={signInStyle}/>
-                </OverlayTrigger>
-              </div>
-              <Input id="signUpFname" name="Firstname" type="text"/>
-              <Input id="signUpLname" name="Lastname" type="text"/>
-              <Input id="signUpUser" name="Username" type="text"/>
-              <Input id="signUpPass" name="Password" type="password"/>
-              <Input id="signUpCpass" name="Confirm Password" type="password"/>
-              <button class="btn btn-primary" type="submit" >Submit</button>
-            </form>
-          </div>
+          <form class="form" id="formSignIn" name="signInForm" onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
+            ? this.popin
+            : this.popout} noValidate>
+            <div class="login-err">
+              {(this.props.user.username == null | this.props.user.id != null) ? " " : "Incorrect Username and Password"}
+            </div>
+            <div name="SignUp" id="SignUp" onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
+              <img id="signUpImg" src="signUp_white.png" alt="" style={iconStyle} />
+                {this.state.TooltipSignUp ? signUpTooltip : <div></div>}
+            </div>
+            <Input id="username" name="Username" type="text"/>
+            <Input id="password" name="Password" type="password"/>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+          <form class="form" id="formSignUp" name="signUpForm" onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
+            ? this.popout
+            : this.popin} noValidate>
+            <div name="SignIn" id="SignIn" onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
+              <img id="signInImg" src="signIn_white.png" alt="" style={iconStyle}/>
+              {this.state.TooltipSignIn ? signInTooltip : ""}
+            </div>
+            <Input id="signUpFname" name="Firstname" type="text"/>
+            <Input id="signUpLname" name="Lastname" type="text"/>
+            <Input id="signUpUser" name="Username" type="text"/>
+            <Input id="signUpPass" name="Password" type="password"/>
+            <Input id="signUpCpass" name="Confirm Password" type="password"/>
+            <button class="btn btn-primary" type="submit" >Submit</button>
+          </form>
         </div>
-
-        <Footer/>
-
       </div>
     )
   }

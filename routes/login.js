@@ -15,6 +15,7 @@ module.exports = function(app)
         })
         .then((results) => {
           console.log(results);
+          // console.log(req.body);
           if (bcrypt.compareSync(req.body.pass, results[0].password))
           {
             console.log("Retrieved successfully");
@@ -22,11 +23,17 @@ module.exports = function(app)
               id: results[0]._id,
             }
             res.json(dbOut);
+          } else {
+            console.log("Retrieved but password does not match");
+            var dbOut = {
+              id: null,
+            }
+            res.json(dbOut);
           }
         })
         .catch((error) => {
             console.log("Retrieved failed");
-            console.log(results[0].password);
+            // console.log(results[0].password);
             res.send(error);
             //  done(null, false, {message: 'Bad password'});
         });

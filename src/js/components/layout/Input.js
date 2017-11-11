@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {Overlay, Popover} from "react-bootstrap"
+import { Popover, PopoverBody } from "reactstrap"
 
 import {verifyUser} from "../../actions/signUpActions.js"
 import Bubble from "./../Bubble.js"
@@ -29,9 +29,7 @@ export default class Input extends React.Component {
       toggleIsSpecial: false,
       toggleEmailValid: false,
       passShow: false,
-      passTarget: null,
       userShow: false,
-      userTarget: null,
       formValid: false,
     };
 
@@ -145,10 +143,6 @@ export default class Input extends React.Component {
     this.setState({passShow: false, userShow: false});
   }
 
-  isConfirmedPassword(event) {
-    return event == this.props.password;
-  }
-
   handleOnChange(event) {
     if (this.isEmpty(event)) {
       this.error = this.props.name + " can't be empty ";
@@ -249,8 +243,8 @@ export default class Input extends React.Component {
               : "not available"}
           </div>
         </div>
-        <Overlay show={this.state.passShow} target={this.state.passTarget} placement="right">
-          <Popover id="popover-positioned-scrolling-right">
+        <Popover className="pop_wid" isOpen={this.state.passShow} target='signUpPass' placement="right">
+          <PopoverBody>
             <div class="popover_content popover_title">
               <em>Password Rules</em>
             </div>
@@ -274,10 +268,10 @@ export default class Input extends React.Component {
               {this.state.toggleIsSpecial ? <SuccessIcon/> : <ErrorIcon/> }
               <div class={this.state.toggleIsSpecial ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Atleast one Special Characters</div>
             </div>
-          </Popover>
-        </Overlay>
-        <Overlay show={this.state.userShow} target={this.state.userTarget} placement="right">
-          <Popover id="popover-positioned-scrolling-right">
+          </PopoverBody>
+        </Popover>
+        <Popover className="pop_wid" isOpen={this.state.userShow} target='signUpUser' placement="right">
+          <PopoverBody>
             <div class="popover_content popover_title">
               <em>Username Rules</em>
             </div>
@@ -289,8 +283,8 @@ export default class Input extends React.Component {
               {this.state.toggleEmailValid ? <SuccessIcon/> : <ErrorIcon/> }
               <div class={this.state.toggleEmailValid ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Email invalid</div>
             </div>
-          </Popover>
-        </Overlay>
+          </PopoverBody>
+        </Popover>
       </div>
     );
   }
