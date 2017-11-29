@@ -1,12 +1,29 @@
 import React from "react"
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-
+import {connect} from "react-redux"
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 import Login from "./Login"
-import Mail from "./Mail"
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
+import Header from "../components/layout/Header"
+import Footer from "../components/layout/Footer"
+import AuthorizedRoute from "../components/layout/AuthorizedRoute";
 
-export default class Index extends React.Component {
+@connect((store) => {
+  return {user: store.signin.user, }
+})
+
+class Index extends React.Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+  constructor(props) {
+    super(props);
+    const { cookies } = this.props;
+
+    if (cookies.get('beenHereBefore') == 'yes') {
+      cookie.set('uid', null);
+    }
+  }
 
   render() {
 
@@ -18,7 +35,7 @@ export default class Index extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/mail" component={Mail} />
+          <AuthorizedRoute path="/mail" />
           <Redirect to="/" />
         </Switch>
         <Footer />
@@ -26,3 +43,5 @@ export default class Index extends React.Component {
     )
   }
 };
+
+export default withCookies(Index);

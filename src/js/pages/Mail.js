@@ -1,145 +1,147 @@
-import React from "react"
-import {connect} from "react-redux"
-import { Redirect, Link } from "react-router-dom"
-import { Tooltip } from "reactstrap"
+import React from 'react'
+import {connect} from 'react-redux'
+import { Redirect, Link } from 'react-router-dom'
+import { Button } from 'reactstrap'
+import Draggable from 'react-draggable'
+import { toast } from 'react-toastify'
 
-import {loginAuthenticate} from "../actions/signInActions"
-import {submitSignUp} from "../actions/signUpActions"
+import {sendMail} from '../actions/signInActions.js'
 
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-import Input from "../components/layout/Input";
+import MailContent from '../components/layout/MailContent'
 
 @connect((store) => {
-  return {user: store.signin.user, verifyUser: store.signup.form}
+  return {user: store.signin.user, sent: store.signin.sent, }
 })
 
-export default class Login extends React.Component {
+export default class Mail extends React.Component {
+  state = {
+    toggleCompose: false,
+    toggleToolTip: false,
+  }
   constructor() {
     super();
 
-    document.title = "Mail";
-
-    this.popin = {
-      animation: "popin 0.3s ease-in",
-      display: "block"
-    };
-    this.popout = {
-      animation: "popout 0.3s ease-out",
-      display: "none"
-    };
+    document.title = 'Mail';
     this.state = {
-      toggleSignInDisplay: true,
-      TooltipSignIn: false,
-      TooltipSignUp: false,
-      show: true
-    };
-    this.handleClick = this.handleClick.bind(this);
-    this.formSubmit = this.formSubmit.bind(this);
-    this.formSignUp = this.formSignUp.bind(this);
-    this.toggleSignUpPop = this.toggleSignUpPop.bind(this);
-    this.toggleSignInPop = this.toggleSignInPop.bind(this);
-  }
-
-  handleClick() {
-    var bool = this.state.toggleSignInDisplay;
-    this.setState({
-      toggleSignInDisplay: !bool
-    });
-  }
-
-  formSubmit(event) {
-    event.preventDefault();
-    this.props.dispatch(loginAuthenticate(this.props.user.username, this.props.user.password));
-  }
-
-  formSignUp(event) {
-    event.preventDefault();
-    let data = {
-      firstname: this.props.verifyUser.firstname,
-      lastname: this.props.verifyUser.lastname,
-      username: this.props.verifyUser.username,
-      password: this.props.verifyUser.password,
+      value: "",
     }
-    this.props.dispatch(submitSignUp(data));
+
+    this.ComposeMail = this.ComposeMail.bind(this);
+    this.ToolTip = this.ToolTip.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.submitMail = this.submitMail.bind(this);
   }
 
-  toggleSignUpPop() {
+  ComposeMail() {
     this.setState({
-      TooltipSignUp: !this.state.TooltipSignUp,
-    });
+      toggleCompose: !this.state.toggleCompose,
+    })
   }
 
-  toggleSignInPop() {
+  ToolTip() {
     this.setState({
-      TooltipSignIn: !this.state.TooltipSignIn,
-    });
+      toggleToolTip: !this.state.toggleToolTip,
+    })
+  }
+
+  handleOnChange(event) {
+
+  switch (event.target.name) {
+    case 'to':
+      {
+        this.props.user.send.to = event.target.value;
+        break;
+      }
+    case 'subject':
+      {
+        this.props.user.send.subject = event.target.value;
+        break;
+      }
+    case 'message':
+      {
+        this.props.user.send.text = event.target.value;
+        break;
+      }
+  }
+
+  }
+
+  submitMail() {
+    this.props.user.send.from = this.props.user.username;
+    this.props.dispatch(sendMail(this.props.user.send));
+    toast.success('Message sent',{position: toast.POSITION.TOP_RIGHT} );
+    this.ComposeMail();
   }
 
   render() {
-    const iconStyle = {
-      width: "30px",
-      height: "30px",
-    };
 
-    const tooltipStyle = {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      color: 'white',
-      fontWeight: '400',
-      textShadow: '2px 2px 2px #000000',
-      marginLeft: -150,
-      marginTop: -50,
-      width: 150,
-    }
-
-    const signUpTooltip = (
-      <div style={tooltipStyle}>
-        Create an account
+    const ComposeTooltip = (
+      <div class="tool_tip">
+        Compose
       </div>
     );
-
-    const signInTooltip = (
-      <div style={tooltipStyle}>
-        Log in to ur account
+    const InboxTooltip = (
+      <div class="tool_tip">
+        Inbox
+      </div>
+    );
+    const SentTooltip = (
+      <div class="tool_tip">
+        Sent
+      </div>
+    );
+    const DraftsTooltip = (
+      <div class="tool_tip">
+        Drafts
+      </div>
+    );
+    const TrashTooltip = (
+      <div class="tool_tip">
+        Trash
+      </div>
+    );
+    const SpamTooltip = (
+      <div class="tool_tip">
+        Spam
       </div>
     );
 
     return (
       <div>
-        {this.props.user.id != null ? <Redirect to="/mail"/> : " "}
-        <Header/>
-        <div>
-          <form class="form" id="formSignIn" name="signInForm" onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
-            ? this.popin
-            : this.popout} noValidate>
-            <div class="login-err">
-              {(this.props.user.username == null | this.props.user.id != null) ? " " : "Incorrect Username and Password"}
-            </div>
-            <div name="SignUp" id="SignUp" onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
-              <img id="signUpImg" src="signUp_white.png" alt="" style={iconStyle} />
-                {this.state.TooltipSignUp ? signUpTooltip : <div></div>}
-            </div>
-            <Input id="username" name="Username" type="text"/>
-            <Input id="password" name="Password" type="password"/>
-            <button class="btn btn-primary" type="submit">Submit</button>
-          </form>
-          <form class="form" id="formSignUp" name="signUpForm" onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
-            ? this.popout
-            : this.popin} noValidate>
-            <div name="SignIn" id="SignIn" onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
-              <img id="signInImg" src="signIn_white.png" alt="" style={iconStyle}/>
-              {this.state.TooltipSignIn ? signInTooltip : ""}
-            </div>
-            <Input id="signUpFname" name="Firstname" type="text"/>
-            <Input id="signUpLname" name="Lastname" type="text"/>
-            <Input id="signUpUser" name="Username" type="text"/>
-            <Input id="signUpPass" name="Password" type="password"/>
-            <Input id="signUpCpass" name="Confirm Password" type="password"/>
-            <button class="btn btn-primary" type="submit" >Submit</button>
-          </form>
+        <div class="msgtab">
+           <i class="fa fa-pencil fs_30 msgtab_icon_bot" aria-hidden="true" onClick={this.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleToolTip ? ComposeTooltip : <div></div>}
+           <i class="fa fa-inbox fs_30 msgtab_icon_bot" aria-hidden="true"></i>
+           <i class="fa fa-paper-plane fs_28 msgtab_icon_bot" aria-hidden="true"></i>
+           <i class="fa fa-file-text fs_28 msgtab_icon_bot" aria-hidden="true"></i>
+           <i class="fa fa-trash fs_30 msgtab_icon_bot" aria-hidden="true"></i>
+           <i class="fa fa-shield fs_30 msgtab_icon_bot" aria-hidden="true"></i>
         </div>
-        <Footer/>
+        <div class="conttab">
+           {this.props.user.content.map((cont,index)=>{
+             return (
+               <MailContent cont={cont} key={"cont"+index} />
+             )
+           })}
+        </div>
+          <div class={this.state.toggleCompose ? "new_mail display_block" : "new_mail display_none" }>
+            <div class="head_top bor_top">
+              <div class="head_top_title">New Mail</div>
+              <div class="head_top_icon">_</div>
+              <div class="head_top_icon" onClick={this.ComposeMail}>&times;</div>
+            </div>
+            <div class="clearfix" />
+            <div class="new_mail_cont">
+               <input class="head_send head_inp" name="to" type="text" onChange={this.handleOnChange} placeholder="To" />
+               <input class="head_send head_inp" name="subject" type="text" onChange={this.handleOnChange} placeholder="Subject" />
+               <div>
+                 <textarea class="head_inp head_body" name="message" onChange={this.handleOnChange} placeholder="Message" />
+               </div>
+            </div>
+            <div class="new_mail_cont pd_left_80 bor_bottom">
+                 <Button color="success" onClick={this.submitMail}>Send</Button>
+            </div>
+          </div>
       </div>
     )
   }

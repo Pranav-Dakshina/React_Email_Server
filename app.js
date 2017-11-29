@@ -1,6 +1,8 @@
 const path = require('path');
 const express = require('express');
 const bodyparser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -15,6 +17,7 @@ require('./database.js');
 const app = new express();
 
 var port = 5000;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const compiler = webpack(config);
 const middleware = webpackMiddleware(compiler,
@@ -54,13 +57,20 @@ app.use(bodyparser.urlencoded(
 }));
 app.use(bodyparser.json());
 
-app.get("*", function(req, res)
-{
-  res.render('index');
-});
+app.use(cookieParser('Thabpet'));
+app.use(session({
+  secret: 'thabpet',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.get('/', function(req, res)
+  {
+    res.render('index');
+  });
+
+require('./routes/login.js')(app);
 
 app.listen(port, function(err) {
 
 });
-
-require('./routes/login.js')(app);

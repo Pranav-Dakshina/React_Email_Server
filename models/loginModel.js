@@ -7,6 +7,7 @@ var loginSchema = {
   lastname: String,
   username: String,
   password: String,
+  img: { data: Buffer, contentType: String },
 };
 
 var loginModel = mongoose.model('loginModel', loginSchema, 'login');

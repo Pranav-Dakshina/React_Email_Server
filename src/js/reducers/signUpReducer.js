@@ -68,6 +68,24 @@ export default function reducer(state = {
           submitted: true,
         }
       }
+    case "RESET_FULFILLED":
+      {
+        return {
+          form:
+          {
+            available: null,
+            firstname: null,
+            lastname: null,
+            username: null,
+            password: null,
+          },
+          fetching: null,
+          fetched: null,
+          submitting: null,
+          submitted: null,
+          error: null,
+        }
+      }
   }
 
   return state

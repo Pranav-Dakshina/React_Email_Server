@@ -1,19 +1,19 @@
-import React from "react"
-import { Link} from "react-router-dom"
+import React from 'react'
+import { Route, Link } from 'react-router-dom'
+
+import Dpdown from './../Dropdown.js'
 
 export default class Header extends React.Component {
-  constructor() {
-    super();
-    this.refreshPage = this.refreshPage.bind(this);
-  }
-  refreshPage() {
-    window.location.reload();
-  }
+
   render() {
+
     return (
       <header>
-        <div class="thabpet" onClick={this.refreshPage}>
-             Thabpet
+        <div >
+          <Link to='/' class='thabpet'>Thabpet</Link>
+        </div>
+        <div class='fl_right header_icon'>
+          <Route path='/mail' component={Dpdown} />
         </div>
       </header>
     );

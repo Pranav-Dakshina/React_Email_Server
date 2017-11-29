@@ -6,11 +6,6 @@ export function loginAuthenticate(username, password)
   {
     if (username !== undefined && password !== undefined)
     {
-      // console.log("inside actions");
-      // console.log(username);
-      // console.log(password);
-      //
-      // console.log("after actions");
 
       let data = {
           user: username,
@@ -23,23 +18,31 @@ export function loginAuthenticate(username, password)
         payload: axios.post("/auth/signin", data),
       });
 
-      // axios.post("/auth/signin", data)
-      //   .then((response) =>
-      //   {
-      //     dispatch(
-      //     {
-      //       type: "LOGIN_AUTHENTICATION_FULFILLED",
-      //       payload: response.data
-      //     });
-      //   })
-      //   .catch((err) =>
-      //   {
-      //     dispatch(
-      //     {
-      //       type: "LOGIN_AUTHENTICATION_REJECTED",
-      //       payload: err
-      //     });
-      //   })
     }
+  }
+}
+
+export function sendMail(data)
+{
+  return function(dispatch)
+  {
+    dispatch(
+    {
+      type: "SENDING_MAIL",
+      payload: axios.post("/auth/sendmail", data),
+    });
+  }
+}
+
+export function reset()
+{
+  return function(dispatch)
+  {
+    dispatch(
+      {
+        type: "RESET",
+        payload: axios.post("/auth/signout"),
+      }
+    );
   }
 }

@@ -1,28 +1,37 @@
-import React from "react"
-import {connect} from "react-redux"
-import { Redirect, Link } from "react-router-dom"
-import { Tooltip } from "reactstrap"
+import React from 'react'
+import {connect} from 'react-redux'
+import { Redirect, Link, Route } from 'react-router-dom'
+import { Tooltip } from 'reactstrap'
+import { withCookies, Cookies } from 'react-cookie';
 
-import {loginAuthenticate} from "../actions/signInActions"
-import {submitSignUp} from "../actions/signUpActions"
+import { instanceOf } from 'prop-types';
 
-import Input from "../components/layout/Input";
+import { loginAuthenticate } from '../actions/signInActions'
+import { submitSignUp } from '../actions/signUpActions'
+
+import Input from '../components/layout/Input';
 
 @connect((store) => {
   return {user: store.signin.user, verifyUser: store.signup.form}
 })
 
-export default class Login extends React.Component {
-  constructor() {
-    super();
+class Login extends React.Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+  };
+
+  constructor(props) {
+    super(props);
+
+    document.title = 'Thabpet';
 
     this.popin = {
-      animation: "popin 0.3s ease-in",
-      display: "block"
+      animation: 'popin 0.3s ease-in',
+      display: 'block'
     };
     this.popout = {
-      animation: "popout 0.3s ease-out",
-      display: "none"
+      animation: 'popout 0.3s ease-out',
+      display: 'none'
     };
     this.state = {
       toggleSignInDisplay: true,
@@ -74,8 +83,8 @@ export default class Login extends React.Component {
 
   render() {
     const iconStyle = {
-      width: "30px",
-      height: "30px",
+      width: '30px',
+      height: '30px',
     };
 
     const tooltipStyle = {
@@ -101,40 +110,46 @@ export default class Login extends React.Component {
       </div>
     );
 
+    const { cookies } = this.props;
+
     return (
       <div>
-        {this.props.user.id != null ? <Redirect to="/mail"/> : " "}
+        { cookies.get('uid') != null
+          ? <div><Redirect to='/mail' /></div>
+          : ' ' }
         <div>
-          <form class="form" id="formSignIn" name="signInForm" onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
+          <form class='form' id='formSignIn' name='signInForm' onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
             ? this.popin
             : this.popout} noValidate>
-            <div class="login-err">
-              {(this.props.user.username == null | this.props.user.id != null) ? " " : "Incorrect Username and Password"}
+            <div class='login-err'>
+              {(this.props.user.username == null | this.props.user.id != null) ? ' ' : 'Incorrect Username and Password'}
             </div>
-            <div name="SignUp" id="SignUp" onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
-              <img id="signUpImg" src="signUp_white.png" alt="" style={iconStyle} />
+            <div name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
+              <img id='signUpImg' src='signUp_white.png' alt='' style={iconStyle} />
                 {this.state.TooltipSignUp ? signUpTooltip : <div></div>}
             </div>
-            <Input id="username" name="Username" type="text"/>
-            <Input id="password" name="Password" type="password"/>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <Input id='username' name='Username' type='text'/>
+            <Input id='password' name='Password' type='password'/>
+            <button class='btn btn-primary' type='submit'>Submit</button>
           </form>
-          <form class="form" id="formSignUp" name="signUpForm" onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
+          <form class='form' id='formSignUp' name='signUpForm' onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
             ? this.popout
             : this.popin} noValidate>
-            <div name="SignIn" id="SignIn" onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
-              <img id="signInImg" src="signIn_white.png" alt="" style={iconStyle}/>
-              {this.state.TooltipSignIn ? signInTooltip : ""}
+            <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
+              <img id='signInImg' src='signIn_white.png' alt='' style={iconStyle}/>
+              {this.state.TooltipSignIn ? signInTooltip : ''}
             </div>
-            <Input id="signUpFname" name="Firstname" type="text"/>
-            <Input id="signUpLname" name="Lastname" type="text"/>
-            <Input id="signUpUser" name="Username" type="text"/>
-            <Input id="signUpPass" name="Password" type="password"/>
-            <Input id="signUpCpass" name="Confirm Password" type="password"/>
-            <button class="btn btn-primary" type="submit" >Submit</button>
+            <Input id='signUpFname' name='Firstname' type='text'/>
+            <Input id='signUpLname' name='Lastname' type='text'/>
+            <Input id='signUpUser' name='Username' type='text'/>
+            <Input id='signUpPass' name='Password' type='password'/>
+            <Input id='signUpCpass' name='Confirm Password' type='password'/>
+            <button class='btn btn-primary' type='submit' >Submit</button>
           </form>
         </div>
       </div>
     )
   }
 };
+
+export default withCookies(Login);

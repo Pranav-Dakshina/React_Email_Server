@@ -60,13 +60,18 @@ footer
 
     position: absolute;
 
-    margin-left: 20px;
+    margin-left: 10px;
 
     cursor: pointer;
 
-    color: white;
+    color: white !important;
     text-shadow: 2px 2px 8px #000;
-    /*text-decoration: none !important;*/
+}
+
+a
+{
+  color: black !important;
+  text-decoration: none !important;
 }
 
 .form
@@ -106,6 +111,7 @@ footer
     display: block;
     float: left;
 
+    font-size: 0.9em;
     width: 81%;
     margin: 0 10px 10px;
 
@@ -127,18 +133,6 @@ footer
 {
     margin-left: 90%;
 }
-
-/*#signInImg
-{
-    -webkit-filter: contrast(140%);
-            filter: contrast(140%);
-}
-
-#signInImg:hover
-{
-    -webkit-filter: contrast(160%);
-            filter: contrast(160%);
-}*/
 
 .opac_6
 {
@@ -272,6 +266,18 @@ footer
 #tooltip
 {
     background: transparent !important;
+}
+
+.tool_tip {
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  font-weight: 400;
+  text-shadow: 2px 2px 2px #000000;
+  margin-left: 5px;
+  margin-top: -55px;
+  width: 150px;
+  z-index: 4;
 }
 
 .err_msg
@@ -413,9 +419,23 @@ footer
   cursor: pointer;
 }
 
+.header_icon
+{
+  padding: 5px;
+}
+
+.wid {
+  width: 100%;
+}
+
 .fl_left
 {
     float: left;
+}
+
+.fl_right
+{
+    float: right;
 }
 
 .verify_user
