@@ -37,6 +37,12 @@ footer
     color: white;
 }
 
+canvas {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
 .foot_cont {
   margin: 10px;
   padding-left: 10px;
@@ -276,6 +282,19 @@ a
   text-shadow: 2px 2px 2px #000000;
   margin-left: 5px;
   margin-top: -55px;
+  width: 150px;
+  z-index: 4;
+}
+
+.tool_tip2 {
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  font-weight: 100;
+  font-size: 12px;
+  text-shadow: 2px 2px 2px #000000;
+  margin-left: -8px;
+  margin-top: -50px;
   width: 150px;
   z-index: 4;
 }

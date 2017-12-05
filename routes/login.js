@@ -20,7 +20,7 @@ module.exports = function(app)
           username: req.body.user
         })
         .then((results) => {
-          console.log(results);
+          // console.log(results);
           // console.log(req.body);
           if (bcrypt.compareSync(req.body.pass, results[0].password))
           {
@@ -146,7 +146,7 @@ module.exports = function(app)
               });
 
               imap.once('end', function() {
-                console.log('af push',content);
+                // console.log('af push',content);
                 console.log('Cction ended');
                 res.cookie('uid', results[0]._id);
                 res.json(content);

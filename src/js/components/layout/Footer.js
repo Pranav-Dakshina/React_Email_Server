@@ -34,12 +34,6 @@ export default class Footer extends React.Component {
           <div class="foot_cont fl_left">
             <p>Copyright &copy; Thabpet.com</p>
           </div>
-          <Modal isOpen={this.state.toggleAbout} toggle={this.toggle}>
-            <ModalHeader toggle={this.toggle}>About</ModalHeader>
-            <ModalBody>
-               This Website is a Email server created by Thabpet.com.
-            </ModalBody>
-          </Modal>
         </div>
       </footer>
     );

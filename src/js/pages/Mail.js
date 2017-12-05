@@ -76,32 +76,32 @@ export default class Mail extends React.Component {
   render() {
 
     const ComposeTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Compose
       </div>
     );
     const InboxTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Inbox
       </div>
     );
     const SentTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Sent
       </div>
     );
     const DraftsTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Drafts
       </div>
     );
     const TrashTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Trash
       </div>
     );
     const SpamTooltip = (
-      <div class="tool_tip">
+      <div class="tool_tip2">
         Spam
       </div>
     );
@@ -112,10 +112,15 @@ export default class Mail extends React.Component {
            <i class="fa fa-pencil fs_30 msgtab_icon_bot" aria-hidden="true" onClick={this.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
            {this.state.toggleToolTip ? ComposeTooltip : <div></div>}
            <i class="fa fa-inbox fs_30 msgtab_icon_bot" aria-hidden="true"></i>
+           {this.state.toggleToolTip ? InboxTooltip : <div></div>}
            <i class="fa fa-paper-plane fs_28 msgtab_icon_bot" aria-hidden="true"></i>
+           {this.state.toggleToolTip ? SentTooltip : <div></div>}
            <i class="fa fa-file-text fs_28 msgtab_icon_bot" aria-hidden="true"></i>
+           {this.state.toggleToolTip ? DraftsTooltip : <div></div>}
            <i class="fa fa-trash fs_30 msgtab_icon_bot" aria-hidden="true"></i>
+           {this.state.toggleToolTip ? TrashTooltip : <div></div>}
            <i class="fa fa-shield fs_30 msgtab_icon_bot" aria-hidden="true"></i>
+           {this.state.toggleToolTip ? SpamTooltip : <div></div>}
         </div>
         <div class="conttab">
            {this.props.user.content.map((cont,index)=>{
