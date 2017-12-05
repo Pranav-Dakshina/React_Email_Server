@@ -12,7 +12,7 @@ import { submitSignUp } from '../actions/signUpActions'
 import Input from '../components/layout/Input';
 
 @connect((store) => {
-  return {user: store.signin.user, verifyUser: store.signup.form}
+  return {user: store.signin.user, verifyUser: store.signup.form, verify: store.signin.verify,}
 })
 
 class Login extends React.Component {
@@ -122,7 +122,7 @@ class Login extends React.Component {
             ? this.popin
             : this.popout} noValidate>
             <div class='login-err'>
-              {(this.props.user.username == null | this.props.user.id != null) ? ' ' : 'Incorrect Username and Password'}
+              {(this.props.verify != false) ? ' ' : 'Incorrect Username and Password'}
             </div>
             <div name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
               <img id='signUpImg' src='signUp_white.png' alt='' style={iconStyle} />

@@ -20,6 +20,7 @@ export default function reducer(state = {
   },
   fetching: null,
   fetched: null,
+  verify: null,
   sending: null,
   sent: null,
   error: null,
@@ -40,6 +41,7 @@ export default function reducer(state = {
         return {
           ...state,
           fetching: false,
+          fetched: false,
           error: action.payload
         }
       }
@@ -49,10 +51,11 @@ export default function reducer(state = {
           ...state,
           fetching: false,
           fetched: true,
+          verify: action.payload.data.verify,
           user:
           {
             ...state.user,
-            content: action.payload.data,
+            content: action.payload.data.content,
           }
         }
       }

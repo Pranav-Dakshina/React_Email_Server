@@ -148,24 +148,38 @@ module.exports = function(app)
               imap.once('end', function() {
                 // console.log('af push',content);
                 console.log('Cction ended');
+                console.log('Client Ip : ', req.ip);
                 res.cookie('uid', results[0]._id);
-                res.json(content);
+                var dbOut = {
+                  content: content,
+                  verify: true,
+                }
+                res.json(dbOut);
               });
 
               imap.connect();
 
           } else {
             console.log("Retrieved but password does not match");
+            var ip = ((req.headers['x-forwarded-for'] || '').split(',')[0]
+        || req.connection.remoteAddress);
+            console.log('Client Ip : ', ip);
             var dbOut = {
-              id: null,
+              content: null,
+              verify: false,
             }
-
+            res.send(dbOut);
           }
         })
         .catch((error) => {
             console.log("Retrieved failed");
+            console.log('Client Ip : ', req.ip);
             // console.log(results[0].password);
-            res.send(error);
+            var dbOut = {
+              content: null,
+              verify: false,
+            }
+            res.send(dbOut);
             //  done(null, false, {message: 'Bad password'});
         });
     });
