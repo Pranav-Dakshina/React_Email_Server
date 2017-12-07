@@ -1,5 +1,6 @@
-// var debug = process.env.NODE_ENV !== "production";
-var debug = true;
+process.env.NODE_ENV = 'production';
+var debug = process.env.NODE_ENV !== 'production';
+// var debug = false;
 var webpack = require('webpack');
 var path = require('path');
 require("babel-polyfill");
@@ -29,12 +30,15 @@ module.exports = {
     publicPath: '/'
   },
   plugins: debug ? [] : [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin(
     {
       mangle: false,
-      sourcemap: false
+      sourcemap: true,
     }),
   ],
 };

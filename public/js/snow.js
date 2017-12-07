@@ -33,7 +33,7 @@ const populateRain = () => {
       length: Math.random() * 2,
       opacity: random(0.1, 0.3),
       speedX: random(-1, -2),
-      speedY: random(1, 3)
+      speedY: random(0.5, 1.5)
     });
   }
 };

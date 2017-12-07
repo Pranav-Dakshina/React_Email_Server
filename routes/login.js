@@ -135,7 +135,7 @@ module.exports = function(app)
                     });
                   });
                   f.on('end', function() {
-                    console.log('Done fetching all messages!');
+                    // console.log('Done fetching all messages!');
                     imap.end();
                   });
                 });
@@ -147,7 +147,7 @@ module.exports = function(app)
 
               imap.once('end', function() {
                 // console.log('af push',content);
-                console.log('Cction ended');
+                // console.log('Cction ended');
                 console.log('Client Ip : ', req.ip);
                 res.cookie('uid', results[0]._id);
                 var dbOut = {
@@ -234,7 +234,7 @@ module.exports = function(app)
       // console.log(res.cookies.uid);
       LoginModel.find({ username: req.params.user })
         .then((results) => {
-          console.log("Success");
+          // console.log("Success");
           // console.log(results[0]);
           // res.setHeader('content-type', 'image/jpeg');
           res.end(results[0].img.data);

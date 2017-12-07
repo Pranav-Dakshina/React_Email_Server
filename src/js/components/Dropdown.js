@@ -33,7 +33,7 @@ class Dpdown extends React.Component {
     }
 
     signOut() {
-      console.log("signOut");
+      // console.log("signOut");
       const { cookies } = this.props;
       this.props.dispatch(reset());
       cookies.remove('uid');

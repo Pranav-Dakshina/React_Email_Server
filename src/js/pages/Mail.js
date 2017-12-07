@@ -14,16 +14,20 @@ import MailContent from '../components/layout/MailContent'
 })
 
 export default class Mail extends React.Component {
-  state = {
-    toggleCompose: false,
-    toggleToolTip: false,
-  }
+
   constructor() {
     super();
 
     document.title = 'Mail';
     this.state = {
       value: "",
+      toggleCompose: false,
+      toggleComposeToolTip: false,
+      toggleInboxToolTip: false,
+      toggleSentToolTip: false,
+      toggleDraftsToolTip: false,
+      toggleTrashToolTip: false,
+      toggleSpamToolTip: false,
     }
 
     this.ComposeMail = this.ComposeMail.bind(this);
@@ -38,10 +42,52 @@ export default class Mail extends React.Component {
     })
   }
 
-  ToolTip() {
-    this.setState({
-      toggleToolTip: !this.state.toggleToolTip,
-    })
+  ToolTip(event) {
+    switch (event.target.id) {
+      case 'compose':
+      {
+        this.setState({
+          toggleComposeToolTip: !this.state.toggleComposeToolTip,
+        })
+        break;
+      }
+      case 'inbox':
+      {
+        this.setState({
+          toggleInboxToolTip: !this.state.toggleInboxToolTip,
+        })
+        break;
+      }
+      case 'sent':
+      {
+        this.setState({
+          toggleSentToolTip: !this.state.toggleSentToolTip,
+        })
+        break;
+      }
+      case 'drafts':
+      {
+        this.setState({
+          toggleDraftsToolTip: !this.state.toggleDraftsToolTip,
+        })
+        break;
+      }
+      case 'trash':
+      {
+        this.setState({
+          toggleTrashToolTip: !this.state.toggleTrashToolTip,
+        })
+        break;
+      }
+      case 'spam':
+      {
+        this.setState({
+          toggleSpamToolTip: !this.state.toggleSpamToolTip,
+        })
+        break;
+      }
+    }
+
   }
 
   handleOnChange(event) {
@@ -109,18 +155,18 @@ export default class Mail extends React.Component {
     return (
       <div>
         <div class="msgtab">
-           <i class="fa fa-pencil fs_30 msgtab_icon_bot" aria-hidden="true" onClick={this.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
-           {this.state.toggleToolTip ? ComposeTooltip : <div></div>}
-           <i class="fa fa-inbox fs_30 msgtab_icon_bot" aria-hidden="true"></i>
-           {this.state.toggleToolTip ? InboxTooltip : <div></div>}
-           <i class="fa fa-paper-plane fs_28 msgtab_icon_bot" aria-hidden="true"></i>
-           {this.state.toggleToolTip ? SentTooltip : <div></div>}
-           <i class="fa fa-file-text fs_28 msgtab_icon_bot" aria-hidden="true"></i>
-           {this.state.toggleToolTip ? DraftsTooltip : <div></div>}
-           <i class="fa fa-trash fs_30 msgtab_icon_bot" aria-hidden="true"></i>
-           {this.state.toggleToolTip ? TrashTooltip : <div></div>}
-           <i class="fa fa-shield fs_30 msgtab_icon_bot" aria-hidden="true"></i>
-           {this.state.toggleToolTip ? SpamTooltip : <div></div>}
+           <i class="fa fa-pencil fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleComposeToolTip ? ComposeTooltip : <div></div>}
+           <i class="fa fa-inbox fs_30 msgtab_icon_bot" id="inbox" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleInboxToolTip ? InboxTooltip : <div></div>}
+           <i class="fa fa-paper-plane fs_28 msgtab_icon_bot" id="sent" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleSentToolTip ? SentTooltip : <div></div>}
+           <i class="fa fa-file-text fs_28 msgtab_icon_bot" id="drafts" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleDraftsToolTip ? DraftsTooltip : <div></div>}
+           <i class="fa fa-trash fs_30 msgtab_icon_bot" id="trash" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleTrashToolTip ? TrashTooltip : <div></div>}
+           <i class="fa fa-shield fs_30 msgtab_icon_bot" id="spam" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+           {this.state.toggleSpamToolTip ? SpamTooltip : <div></div>}
         </div>
         <div class="conttab">
            {this.props.user.content.map((cont,index)=>{
