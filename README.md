@@ -30,11 +30,3 @@ The things you need to install on a system:
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-=======
-
-Run npm install in cloned directory.
-
-Run npm run dev.
-
-Open http://localhost:5000/
->>>>>>> 0e41b9ce419dda3eb271a918a54fff2bfa843a47
