@@ -1,11 +1,11 @@
 # React_Email_Server
 
-<<<<<<< HEAD
 This project was our attempt to creat a modren themed emial provider with a minimalstic design to enhance the user experience.
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+    
     Run npm install in cloned directory.
 
     Run npm run dev.
