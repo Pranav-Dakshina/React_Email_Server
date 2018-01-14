@@ -9,8 +9,11 @@ export default class Header extends React.Component {
 
     return (
       <header>
-        <div >
+        <div class='fl_left'>
           <Link to='/' class='thabpet'>Thabpet</Link>
+        </div>
+        <div class='fl_left'>
+          <Route path='/mail' component={Dpdown} />
         </div>
         <div class='fl_right header_icon'>
           <Route path='/mail' component={Dpdown} />

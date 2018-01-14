@@ -31,10 +31,10 @@
     "npm": "^5.5.1",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
-    "react": "^16.0.0",
+    "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-cookie": "^2.1.1",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.2.0",
     "react-draggable": "^3.0.3",
     "react-iframe": "^1.1.0",
     "react-md": "^1.2.8",
@@ -49,6 +49,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^4.4.2",
     "redux-thunk": "^2.2.0",
+    "sendbird": "^3.0.48",
     "uglifyjs-webpack-plugin": "^1.1.2",
     "webpack": "^1.15.0",
     "webpack-dev-middleware": "^1.12.0",
@@ -56,10 +57,13 @@
     "webpack-hot-middleware": "^2.20.0"
   },
   "devDependencies": {
-    "csscomb": "^4.2.0"
+    "csscomb": "^4.2.0",
+    "eslint": "^4.14.0",
+    "eslint-plugin-react": "^7.5.1"
   },
   "scripts": {
-    "dev": "webpack & node app.js"
+    "start": "webpack & node app.js",
+    "dev": "webpack-dev-server --content-base src --inline --hot"
   },
   "author": "",
   "license": "ISC"

@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { Route, Switch, Redirect } from "react-router-dom"
 import { withCookies, Cookies } from 'react-cookie';
 import { instanceOf } from 'prop-types';
 import Login from "./Login"

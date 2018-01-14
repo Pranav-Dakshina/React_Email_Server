@@ -22,7 +22,7 @@
 
   overflow-y: scroll;
 
-  width: 500px !important;
+  width: 540px !important;
   height: 650px;
   padding: 10px;
 }
@@ -57,7 +57,7 @@
 }
 
 .mail_cont {
-  width: 480px;
+  width: 520px;
   margin-bottom: 5px;
   padding: 5px 15px;
 
@@ -86,7 +86,7 @@
 .mail_view {
   position: fixed;
   top: 60px;
-  left: 550px;
+  left: 590px;
 
   overflow: hidden;
 
@@ -104,8 +104,18 @@
   }
 }
 
+.z-4 {
+  z-index: 4;
+}
+
+.z-8 {
+  z-index: 8;
+}
+
 .mail_view_html {
   overflow: scroll;
+  margin-top: 10px;
+  height: 520px;
 }
 
 .mail_view_html::-webkit-scrollbar-track {
@@ -224,6 +234,13 @@
   padding-left: 80%;
 }
 
+.close_sign {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  opacity: 0.5;
+}
+
 .fs_30 {
   font-size: 35px !important;
 }
@@ -236,17 +253,9 @@
   height: 35px;
 }
 
-#drafts {
+#drafts, #spam, #trash,  {
   margin-left: 3px;
   /*margin-top: 13px !important;*/
-}
-
-#spam {
-  margin-left: 3px;
-}
-
-#trash {
-  margin-left: 3px;
 }
 
 .msg {
@@ -334,6 +343,10 @@
           transition: all 0.3s ease-in-out;
 
   background: rgba(225, 225, 225, 0.3);
+}
+
+#mail_cont_det {
+  margin-left: 5px;
 }
 
 /*#compose {

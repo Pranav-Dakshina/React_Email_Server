@@ -1,4 +1,4 @@
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 var debug = process.env.NODE_ENV !== 'production';
 // var debug = false;
 var webpack = require('webpack');

@@ -136,7 +136,7 @@ a {
   opacity: 0.8;
 }
 
-#signUpImg:hover, #signInImg:hover {
+#signUpImg:hover, #signInImg:hover, .close_sign:hover {
   opacity: 1;
 }
 
@@ -395,6 +395,10 @@ a {
 
 .wid {
   width: 100%;
+}
+
+.wid_90 {
+  width: 90%;
 }
 
 .fl_left {

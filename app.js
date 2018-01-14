@@ -18,11 +18,12 @@ const app = new express();
 
 var port = 5000;
 process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 if (process.env.NODE_ENV !== "production") {
-    const compiler = webpack(config);
     console.log('development');
+    const compiler = webpack(config);
     const middleware = webpackMiddleware(compiler,
       {
         publicPath: config.output.publicPath,
