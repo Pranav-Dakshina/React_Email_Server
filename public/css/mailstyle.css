@@ -29,14 +29,12 @@
 
 .conttab::-webkit-scrollbar-track {
   margin-top: 10px;
-
   border-radius: 10px;
   background-color: transparent;
 }
 
 .conttab::-webkit-scrollbar {
   width: 10px;
-
   border-radius: 10px;
   background-color: transparent;
 }

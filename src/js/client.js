@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import {Provider} from "react-redux"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Switch } from "react-router-dom"
 import { CookiesProvider } from 'react-cookie'
 
 import Index from "./pages/Index"
