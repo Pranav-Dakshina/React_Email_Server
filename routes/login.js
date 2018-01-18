@@ -26,11 +26,9 @@ module.exports = function(app)
         })
         .then((results) =>
         {
-          // console.log(results);
-          // console.log(req.body);
           if (bcrypt.compareSync(req.body.pass, results[0].password))
           {
-            console.log("Retrieved successfully");
+            // console.log("Retrieved successfully");
             var imap = new IMAPserver({
               user: req.body.user,
               password: req.body.pass,
@@ -53,7 +51,7 @@ module.exports = function(app)
                 });
                 f.on('message', function(msg, seqno) {
                   var prefix = '(#' + seqno + ') ';
-                  console.log('message');
+                  // console.log('message');
                   let mailmsg = {};
                   msg.on('body', function(stream, info) {
                     var mp = new MailParser();
@@ -71,14 +69,14 @@ module.exports = function(app)
                         mailmsg["body"] = body;
 
                         if(data.type === 'attachment'){
-                            console.log(data.filename);
+                            // console.log(data.filename);
                             // data.content.pipe(process.stdout);
                             // data.content.on('end', ()=>data.release());
                         }
                     });
 
                     mp.on('headers', function(mail) {
-                      console.log('headers');
+                      // console.log('headers');
 
                       // var to = {};
                       // to["address"] = mail.get('to').value[0].address;
@@ -111,7 +109,7 @@ module.exports = function(app)
                   });
 
                   msg.on('end', function() {
-                    console.log('Done fetching all messages');
+                    // console.log('Done fetching all messages');
                     // imap.end();
                   });
 
@@ -122,7 +120,7 @@ module.exports = function(app)
                 });
 
                 f.once('end', function() {
-                  console.log('Done fetching all messages!');
+                  // console.log('Done fetching all messages!');
                    imap.end();
                 });
 
@@ -283,7 +281,7 @@ module.exports = function(app)
         .then((results) =>
         {
           console.log("Submitted successfully");
-          console.log(results);
+          // console.log(results);
           let dbOut = {
             submitted: true,
           }
@@ -310,8 +308,7 @@ module.exports = function(app)
           // console.log(results[0]);
           // res.setHeader('content-type', 'image/jpeg');
           res.end(results[0].img.data);
-        })
-        .catch((error) =>
+        }, (error) =>
         {
           console.log("Retrieved failed");
           console.log(error);
@@ -353,14 +350,6 @@ module.exports = function(app)
           // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         });
       });
-      // setup email data with unicode symbols
-      // let mailOptions = {
-      //     from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
-      //     to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
-      //     subject: 'Hello ✔', // Subject line
-      //     text: 'Hello world?', // plain text body
-      //     html: '<b>Hello world?</b>' // html body
-      // };
 
     });
 

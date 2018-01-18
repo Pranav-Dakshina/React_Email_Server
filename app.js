@@ -19,7 +19,7 @@ const app = new express();
 // var port = 5000;
 var port = 8080;
 process.env.NODE_ENV = 'production';
-//process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 if (process.env.NODE_ENV !== "production") {
