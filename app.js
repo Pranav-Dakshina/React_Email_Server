@@ -72,9 +72,14 @@ app.use(session({
 }));
 
 app.get('/', function(req, res)
-  {
-    res.render('index');
-  });
+{
+  res.render('index');
+});
+
+app.get('/sitemap.txt', function(req, res)
+{
+  res.render('sitemap');
+});
 
 require('./routes/login.js')(app);
 
