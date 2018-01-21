@@ -11,7 +11,9 @@ export default class Header extends React.Component {
     return (
       <header>
         <div class='fl_left div_hd_icon'>
-          <Link to='/' class='thabpet'>Thabpet</Link>
+          <Link to='/'>
+            <img src='Thabpet In.png' class='thabpet' />
+          </Link>
         </div>
         <div class='fl_left div_srch'>
           <Route path='/mail' component={Search} />

@@ -25,10 +25,13 @@ module.exports = {
     publicPath: '/'
   },
   plugins: debug ? [] : [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpack.optimize.UglifyJsPlugin(
     {
       mangle: false,
-      sourcemap: true,
+      sourcemap: false,
     }),
   ],
 };
