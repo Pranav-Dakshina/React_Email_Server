@@ -29,12 +29,14 @@
 
 .conttab::-webkit-scrollbar-track {
   margin-top: 10px;
+
   border-radius: 10px;
   background-color: transparent;
 }
 
 .conttab::-webkit-scrollbar {
   width: 10px;
+
   border-radius: 10px;
   background-color: transparent;
 }
@@ -112,8 +114,9 @@
 
 .mail_view_html {
   overflow: scroll;
-  margin-top: 10px;
+
   height: 520px;
+  margin-top: 10px;
 }
 
 .mail_view_html::-webkit-scrollbar-track {
@@ -236,6 +239,7 @@
   position: absolute;
   top: -8px;
   right: 10px;
+
   opacity: 0.5;
 }
 
@@ -246,12 +250,12 @@
   font-size: 28px !important;
 }
 .msgtab_icon_bot {
-  margin-top: 10px;
   width: 30px;
   height: 35px;
+  margin-top: 10px;
 }
 
-#drafts, #spam, #trash,  {
+#drafts, #spam, #trash {
   margin-left: 3px;
   /*margin-top: 13px !important;*/
 }
@@ -289,8 +293,8 @@
 
   border: none;
   border-radius: 5px;
-  background: transparent;
   outline: none;
+  background: transparent;
 }
 
 #search:focus {
@@ -311,11 +315,11 @@
   display:         flex;
   -webkit-justify-content: flex-start;
           justify-content: flex-start;
-
   /* min-width: 250px; */
+
   max-width: 400px;
-  height: 40px
-  padding: 0 !important;
+  height: 40px;
+  padding: 0px !important;
 }
 
 @media (max-width: 800px) {

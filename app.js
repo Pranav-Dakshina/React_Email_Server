@@ -16,13 +16,15 @@ require('./database.js');
 
 const app = new express();
 
-var port = 5000;
+// var port = 5000;
+var port = 8080;
 process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 if (process.env.NODE_ENV !== "production") {
-    const compiler = webpack(config);
     console.log('development');
+    const compiler = webpack(config);
     const middleware = webpackMiddleware(compiler,
       {
         publicPath: config.output.publicPath,
@@ -70,9 +72,14 @@ app.use(session({
 }));
 
 app.get('/', function(req, res)
-  {
-    res.render('index');
-  });
+{
+  res.render('index');
+});
+
+app.get('/sitemap.txt', function(req, res)
+{
+  res.render('sitemap');
+});
 
 require('./routes/login.js')(app);
 
