@@ -9,18 +9,18 @@ import {connect} from 'react-redux'
   return {user: store.signin.user,}
 })
 
-export default class Dpdown extends React.Component {
+export default class Search extends React.Component {
 
   constructor() {
-      super();
+    super();
 
-    }
+  }
 
   render() {
 
     return (
       <Fragment>
-        <input id="search" class="srch fl_left" placeholder="Search" />
+        <input id="search" class="srch fl_left" placeholder="Search" onClick={this.handleOnClick} />
         <img class="fl_left" id="img_srch" src="search2.png" />
       </Fragment>
     );

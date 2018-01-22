@@ -1,4 +1,12 @@
 {
-  "presets": ["@babel/preset-react", "@babel/preset-env", "@babel/preset-stage-0"],
-  "plugins": ["react-html-attrs", "transform-class-properties", "transform-decorators-legacy"],
+  "presets": [
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-stage-0"
+  ],
+  "plugins": [
+    "react-html-attrs",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+  ],
 }
