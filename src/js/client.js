@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import {Provider} from "react-redux"
-import { PersistGate } from 'redux-persist/lib/integration/react'
+import React from "react";
+import ReactDOM from "react-dom";
+import {Provider} from "react-redux";
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
-import { BrowserRouter, Switch } from "react-router-dom"
-import { CookiesProvider } from 'react-cookie'
+import { BrowserRouter, Switch } from "react-router-dom";
+import { CookiesProvider } from 'react-cookie';
 
-import Index from "./pages/Index"
-import store from "./store"
-import '../css/styles.scss'
+import Index from "./pages/Index";
+import store from "./store";
+import '../css/styles.scss';
 
-let { storeConfig, persistor } = store()
+let { storeConfig, persistor } = store();
 
-const app = document.getElementById('app')
+const app = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={storeConfig}>
