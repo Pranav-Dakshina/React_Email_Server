@@ -7,7 +7,7 @@ mongoose.connection.db.dropDatabase();
 
 var pass = bcrypt.hashSync('Linode@2210', 10);
 var pass2 = bcrypt.hashSync('pass', 10);
-var pass3 = bcrypt.hashSync('Shanu*525', 10);
+//var pass3 = bcrypt.hashSync('Shanu*525', 10);
 
 var initial = [
 {
@@ -17,16 +17,6 @@ var initial = [
   password: pass,
   img: {
     data: fs.readFileSync('./public/images/me.jpg'),
-    contentType: 'image/jpeg',
-  }
-},
-{
-  firstname: "Sree",
-  lastname: "Ayyala",
-  username: "sree@thabpet.com",
-  password: pass3,
-  img: {
-    data: fs.readFileSync('./public/images/sreeni.jpg'),
     contentType: 'image/jpeg',
   }
 },
