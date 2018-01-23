@@ -28,7 +28,7 @@ module.exports = function(app)
         {
           if (bcrypt.compareSync(req.body.pass, results[0].password))
           {
-            // console.log("Retrieved successfully");
+            console.log("Retrieved successfully");
             var imap = new IMAPserver({
               user: req.body.user,
               password: req.body.pass,
