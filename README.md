@@ -15,19 +15,15 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 The things you need to install on a system:
-    A text editor of choice
-    Node and npm for package Management
-    MongoDB for database purpose.
-    A browser of choice
+   - A text editor of choice
+   - Node and npm for package Management
+   - MongoDB for database purpose.
+   - A browser of choice
 ## Built With
 
 ## Authors
- Pranav Dakshinamurthy
- Sreenivas Ayyalasomayajula
- Naveen Mathew Nathan
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+ - Pranav Dakshinamurthy
+ - Sreenivas Ayyalasomayajula
+ - Naveen Mathew Nathan
 
 ## Acknowledgments
