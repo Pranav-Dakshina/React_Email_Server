@@ -24,4 +24,3 @@ The things you need to install on a system:
 ## Authors
  - Pranav Dakshinamurthy
  - Sreenivas Ayyalasomayajula
- - Naveen Mathew Nathan
