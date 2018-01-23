@@ -76,5 +76,5 @@
     "lint": "esw webpack.config.* src --color"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
