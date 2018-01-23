@@ -1,6 +1,6 @@
 # React_Email_Server
 
-This project was our attempt to creat a modren themed emial provider with a minimalstic design to enhance the user experience.
+This project was our attempt to create a modern themed email provider with a minimalastic design to enhance the user experience.
 
 ## Getting Started
 
@@ -22,8 +22,9 @@ The things you need to install on a system:
 ## Built With
 
 ## Authors
- Pranav Dakshinamurty
- Sreenivas Ayyalasomayajula[]
+ Pranav Dakshinamurthy
+ Sreenivas Ayyalasomayajula
+ Naveen Mathew Nathan
 
 ## License
 
