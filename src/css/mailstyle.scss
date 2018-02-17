@@ -311,23 +311,24 @@
 }
 
 .srch {
-  display: -webkit-flex;
-  display:         flex;
-  -webkit-justify-content: flex-start;
-          justify-content: flex-start;
-  /* min-width: 250px; */
-
-  max-width: 400px;
-  height: 40px;
-  padding: 0px !important;
+  // display: -webkit-flex;
+  // display:         flex;
+  // -webkit-justify-content: flex-start;
+  //         justify-content: flex-start;
+  //
+  // max-width: 400px;
+  height: 35px;
+  padding: 5px 0px !important;
+  background-color: transparent !important;
+  color: white !important;
 }
 
 @media (max-width: 800px) {
   .srch {
-    float: left;
+    // float: left;
 
     width: 25%;
-    margin-left: 30px;
+    // margin-left: 30px;
   }
 }
 
