@@ -59,7 +59,6 @@ export default class Input extends React.Component {
           "mail_view display_block z-8" :
           "mail_view display_none z-4"} >
           <div class="wid fl_left">
-            <a class="fl_left close_sign cur_pt fs_30"><strong>&larr;</strong></a>
             <h2 class="wid_90 fl_left">{cont.subject}</h2>
             <a class="fl_left close_sign cur_pt fs_30" onClick={this.mailViewFalse}>&times;</a>
           </div>
