@@ -1,33 +1,23 @@
 import React from "react"
 import {connect} from "react-redux"
-import Iframe from 'react-iframe'
+// import Iframe from 'react-iframe'
 
 @connect((store) => {
   return {user: store.signin.user,}
 })
 
 export default class Input extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      toggleMailView: false,
-    }
-    this.mailViewTrue = this.mailViewTrue.bind(this);
-    this.mailViewFalse = this.mailViewFalse.bind(this);
+  state = {
+    toggleMailView: false,
   }
 
-  fullView(event) {
-
-  }
-
-  mailViewTrue(event) {
+  mailViewTrue = (event) => {
     this.setState({
       toggleMailView: true,
     });
   }
 
-  mailViewFalse(event) {
+  mailViewFalse = (event) => {
     this.setState({
       toggleMailView: false,
     });
