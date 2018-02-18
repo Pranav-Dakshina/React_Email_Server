@@ -9,13 +9,13 @@
 
 .msgtab {
   width: 50px !important;
-  height: 650px; }
+  height: 800px; }
 
 .conttab {
   left: 50px;
   overflow-y: scroll;
   width: 540px !important;
-  height: 650px;
+  height: 800px;
   padding: 10px; }
 
 .conttab::-webkit-scrollbar-track {
@@ -65,12 +65,12 @@
   left: 590px;
   overflow: hidden;
   width: 700px !important;
-  height: 650px;
+  height: 800px;
   padding: 10px;
   color: black;
   background: white; }
 
-@media (max-width: 850px) {
+@media (max-width: 1080px) {
   .mail_view {
     left: 50px !important; } }
 
@@ -569,7 +569,8 @@ a {
   padding: 5px; }
 
 .wid {
-  width: 100%; }
+  width: 95%;
+  margin-left: 5%; }
 
 .wid_90 {
   width: 90%; }

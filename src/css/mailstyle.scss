@@ -14,7 +14,7 @@
 
 .msgtab {
   width: 50px !important;
-  height: 650px;
+  height: 800px;
 }
 
 .conttab {
@@ -23,7 +23,7 @@
   overflow-y: scroll;
 
   width: 540px !important;
-  height: 650px;
+  height: 800px;
   padding: 10px;
 }
 
@@ -91,14 +91,14 @@
   overflow: hidden;
 
   width: 700px !important;
-  height: 650px;
+  height: 800px;
   padding: 10px;
 
   color: black;
   background: white;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1080px) {
   .mail_view {
     left: 50px !important;
   }
