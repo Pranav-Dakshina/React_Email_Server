@@ -6,7 +6,7 @@ import {connect} from "react-redux"
   return {user: store.signin.user,}
 })
 
-export default class Input extends React.Component {
+export default class MailContent extends React.Component {
   state = {
     toggleMailView: false,
   }
