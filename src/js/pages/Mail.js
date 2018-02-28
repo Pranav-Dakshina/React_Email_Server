@@ -7,12 +7,17 @@ import { toast } from 'react-toastify'
 
 import {sendMail} from '../actions/signInActions.js'
 
-import MailContent from '../components/layout/MailContent'
+import MailContent from '../components/MailContent'
+import MailView from '../components/MailView'
 import Sidebar from '../components/Sidebar'
 import Search from '../components/Search'
 
 @connect((store) => {
-  return {user: store.signin.user, sent: store.signin.sent, }
+  return {
+    user: store.signin.user,
+    sent: store.signin.sent,
+    cont: store.mailview.content
+  }
 })
 
 export default class Mail extends React.Component {
@@ -30,13 +35,15 @@ export default class Mail extends React.Component {
       toggleDraftsToolTip: false,
       toggleTrashToolTip: false,
       toggleSpamToolTip: false,
-      content: this.props.user.content
+      content: this.props.user.content,
+      view: this.props.user.content
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      content: nextProps.user.content
+      content: nextProps.user.content,
+      view: nextProps.cont
     })
   }
 
@@ -60,24 +67,22 @@ export default class Mail extends React.Component {
     }
   }
 
-
-
   handleOnChange = (event) => {
-
-    switch (event.target.name) {
+   let { send } = this.props.user
+   switch (event.target.name) {
       case 'to':
         {
-          this.props.user.send.to = event.target.value;
+          send.to = event.target.value;
           break;
         }
       case 'subject':
         {
-          this.props.user.send.subject = event.target.value;
+          send.subject = event.target.value;
           break;
         }
       case 'message':
         {
-          this.props.user.send.text = event.target.value;
+          send.text = event.target.value;
           break;
         }
     }
@@ -103,10 +108,15 @@ export default class Mail extends React.Component {
           <div class="conttab">
              {this.state.content.map((cont,index) => {
                return (
-                 <MailContent cont={cont} key={"cont"+index} />
+                 <MailContent cont={cont} key={index} ind={index} />
                )
              })}
           </div>
+          {this.state.view.map((cont,index) => {
+            return (
+              <MailView cont={cont} key={index} />
+            )
+          })}
             <div class={this.state.toggleCompose ? "new_mail display_block" : "new_mail display_none" }>
               <div class="head_top bor_top">
                 <div class="head_top_title">New Mail</div>

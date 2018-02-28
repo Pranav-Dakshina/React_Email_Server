@@ -1,9 +1,7 @@
 import axios from "axios"
 
-export function verifyUser(username)
-{
-  return function(dispatch)
-  {
+export const verifyUser = (username) => (
+  (dispatch) => {
     if (username !== undefined)
     {
 
@@ -18,15 +16,13 @@ export function verifyUser(username)
 
     }
   }
-}
+)
 
-export function submitSignUp(data)
-{
-  return function(dispatch)
-  {
+export const submitSignUp = (data) => (
+  (dispatch) => {
     dispatch({
       type: "SUBMIT_SIGNUP",
       payload: axios.post("/submitSignUp", data)
     });
   }
-}
+)

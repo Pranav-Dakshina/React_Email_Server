@@ -26,7 +26,6 @@ export default function reducer(state = {
   error: null,
 }, action)
 {
-
   switch (action.type)
   {
     case "LOGIN_AUTHENTICATION_PENDING":
