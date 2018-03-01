@@ -1,9 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
 
-// import Iframe from 'react-iframe'
-
-import { mailView } from '../actions/mailViewActions.js'
+import { mailViewAdd } from '../actions/mailViewActions.js'
 
 @connect((store) => {
   return {
@@ -12,10 +10,10 @@ import { mailView } from '../actions/mailViewActions.js'
 })
 
 export default class MailContent extends React.Component {
-  mailViewTrue = () => {
+  mailViewAdd = () => {
     let { cont, ind } = this.props
 
-    this.props.dispatch(mailView(cont, ind));
+    this.props.dispatch(mailViewAdd(cont, ind));
   }
 
   render() {
@@ -38,7 +36,7 @@ export default class MailContent extends React.Component {
     };
 
     return (
-      <div class="mail_cont fl_left" onClick={this.mailViewTrue}>
+      <div class="mail_cont fl_left" onClick={this.mailViewAdd}>
          <img class="fl_left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
          <div class="fl_left" id="mail_cont_det">
            <div class="mail_cont_addr">

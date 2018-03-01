@@ -36,7 +36,7 @@ export default class Mail extends React.Component {
       toggleTrashToolTip: false,
       toggleSpamToolTip: false,
       content: this.props.user.content,
-      view: this.props.user.content
+      view: []
     }
   }
 
@@ -57,8 +57,9 @@ export default class Mail extends React.Component {
     if (value.length > 0) {
       this.setState({
         content: this.props.user.content.filter((data) =>
-            (data.to.toLowerCase().includes(value.toLowerCase()) ||
-            data.subject.toLowerCase().includes(value.toLowerCase())))
+          (data.to.toLowerCase().includes(value.toLowerCase()) ||
+           data.subject.toLowerCase().includes(value.toLowerCase()) ||
+           data.from.toLowerCase().includes(value.toLowerCase())))
       })
     } else {
       this.setState({
@@ -112,11 +113,16 @@ export default class Mail extends React.Component {
                )
              })}
           </div>
-          {this.state.view.map((cont,index) => {
-            return (
-              <MailView cont={cont} key={index} />
-            )
-          })}
+          <div class="chattab">
+          </div>
+          {this.state.view.length > 0
+           ?  this.state.view.map((cont,index) => {
+                return (
+                  <MailView cont={cont} key={index} />
+                )
+              })
+           : ''
+          }
             <div class={this.state.toggleCompose ? "new_mail display_block" : "new_mail display_none" }>
               <div class="head_top bor_top">
                 <div class="head_top_title">New Mail</div>
