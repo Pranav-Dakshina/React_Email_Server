@@ -9,17 +9,11 @@
   background: rgba(0, 0, 0, 0.6); }
 
 .msgtab {
-<<<<<<< HEAD
   width: 50px !important; }
-=======
-  width: 50px !important;
-  height: 800px; }
->>>>>>> 8431d9e0dab0df21b9917ae5f49e3369146152d3
 
 .conttab {
   left: 50px;
   overflow-y: scroll;
-<<<<<<< HEAD
   width: 28.5%; }
   .conttab::-webkit-scrollbar-track {
     margin-top: 10px;
@@ -37,26 +31,6 @@
 @media (max-width: 1080px) {
   .conttab {
     width: 57% !important; } }
-=======
-  width: 540px !important;
-  height: 800px;
-  padding: 10px; }
-
-.conttab::-webkit-scrollbar-track {
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: transparent; }
-
-.conttab::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
-  background-color: transparent; }
-
-.conttab::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
->>>>>>> 8431d9e0dab0df21b9917ae5f49e3369146152d3
 
 .dp_down {
   border: none !important;
@@ -88,11 +62,7 @@
   top: 60px;
   left: 590px;
   overflow: hidden;
-<<<<<<< HEAD
   width: 50%;
-=======
-  width: 700px !important;
->>>>>>> 8431d9e0dab0df21b9917ae5f49e3369146152d3
   height: 800px;
   padding: 10px;
   color: black;
