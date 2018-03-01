@@ -14,7 +14,6 @@ export default function reducer(state = {
   error: null,
 }, action)
 {
-
   switch (action.type)
   {
     case "VERIFY_USER_PENDING":

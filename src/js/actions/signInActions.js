@@ -1,16 +1,14 @@
 import axios from "axios"
 
-export function loginAuthenticate(username, password)
-{
-  return function(dispatch)
-  {
+export const loginAuthenticate = (username, password) => (
+  (dispatch) => {
     if (username !== undefined && password !== undefined)
     {
 
       let data = {
           user: username,
           pass: password
-      };
+      }
 
       dispatch(
       {
@@ -20,29 +18,25 @@ export function loginAuthenticate(username, password)
 
     }
   }
-}
+)
 
-export function sendMail(data)
-{
-  return function(dispatch)
-  {
+export const sendMail = (data) => (
+  (dispatch) => {
     dispatch(
     {
       type: "SENDING_MAIL",
       payload: axios.post("/auth/sendmail", data),
-    });
+    })
   }
-}
+)
 
-export function reset()
-{
-  return function(dispatch)
-  {
+export const reset = () => (
+  (dispatch) => {
     dispatch(
       {
         type: "RESET",
         payload: axios.post("/auth/signout"),
       }
-    );
+    )
   }
-}
+)
