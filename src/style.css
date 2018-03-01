@@ -1,6 +1,7 @@
-.msgtab, .conttab {
+.msgtab, .conttab, .chattab {
   position: absolute;
   top: 60px;
+  height: 800px;
   float: left;
   padding: 10px;
   color: white;
@@ -8,37 +9,34 @@
   background: rgba(0, 0, 0, 0.6); }
 
 .msgtab {
-  width: 50px !important;
-  height: 800px; }
+  width: 50px !important; }
 
 .conttab {
   left: 50px;
   overflow-y: scroll;
-  width: 540px !important;
-  height: 800px;
-  padding: 10px; }
+  width: 28.5%; }
+  .conttab::-webkit-scrollbar-track {
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: transparent; }
+  .conttab::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+    background-color: transparent; }
+  .conttab::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
 
-.conttab::-webkit-scrollbar-track {
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: transparent; }
-
-.conttab::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
-  background-color: transparent; }
-
-.conttab::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); }
+@media (max-width: 1080px) {
+  .conttab {
+    width: 57% !important; } }
 
 .dp_down {
   border: none !important;
   background: transparent !important; }
-
-.dp_down:focus {
-  box-shadow: none !important; }
+  .dp_down:focus {
+    box-shadow: none !important; }
 
 .mail_cont {
   width: 520px;
@@ -64,7 +62,7 @@
   top: 60px;
   left: 590px;
   overflow: hidden;
-  width: 700px !important;
+  width: 50%;
   height: 800px;
   padding: 10px;
   color: black;
@@ -72,7 +70,18 @@
 
 @media (max-width: 1080px) {
   .mail_view {
-    left: 50px !important; } }
+    left: 50px !important;
+    width: 95% !important; } }
+
+.chattab {
+  position: fixed;
+  top: 60px;
+  right: 0px;
+  width: 19%; }
+
+@media (max-width: 1080px) {
+  .chattab {
+    width: 37.5% !important; } }
 
 .z-4 {
   z-index: 4; }
@@ -640,5 +649,3 @@ a {
   to {
     transform: scale(1, 1);
     opacity: 1; } }
-
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
