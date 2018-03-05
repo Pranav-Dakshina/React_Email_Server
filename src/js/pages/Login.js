@@ -39,26 +39,26 @@ class Login extends React.Component {
       TooltipSignUp: false,
       show: true
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.formSubmit = this.formSubmit.bind(this);
-    this.formSignUp = this.formSignUp.bind(this);
-    this.toggleSignUpPop = this.toggleSignUpPop.bind(this);
-    this.toggleSignInPop = this.toggleSignInPop.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.formSubmit = this.formSubmit.bind(this);
+    // this.formSignUp = this.formSignUp.bind(this);
+    // this.toggleSignUpPop = this.toggleSignUpPop.bind(this);
+    // this.toggleSignInPop = this.toggleSignInPop.bind(this);
   }
 
-  handleClick() {
+  handleClick = () => {
     var bool = this.state.toggleSignInDisplay;
     this.setState({
       toggleSignInDisplay: !bool
     });
   }
 
-  formSubmit(event) {
+  formSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch(loginAuthenticate(this.props.user.username, this.props.user.password));
   }
 
-  formSignUp(event) {
+  formSignUp = (event) => {
     event.preventDefault();
     let data = {
       firstname: this.props.verifyUser.firstname,
@@ -69,13 +69,13 @@ class Login extends React.Component {
     this.props.dispatch(submitSignUp(data));
   }
 
-  toggleSignUpPop() {
+  toggleSignUpPop = () => {
     this.setState({
       TooltipSignUp: !this.state.TooltipSignUp,
     });
   }
 
-  toggleSignInPop() {
+  toggleSignInPop = () => {
     this.setState({
       TooltipSignIn: !this.state.TooltipSignIn,
     });

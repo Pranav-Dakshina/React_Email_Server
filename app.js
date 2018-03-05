@@ -18,8 +18,8 @@ const app = new express();
 
 // var port = 5000;
 var port = 8080;
-process.env.NODE_ENV = 'production';
-// process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 if (process.env.NODE_ENV !== "production") {
@@ -71,6 +71,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
+require('./config/passport')(app);
+
 app.get('/', function(req, res)
 {
   res.render('index');
@@ -82,6 +84,7 @@ app.get('/sitemap.txt', function(req, res)
 });
 
 require('./routes/login.js')(app);
+require('./routes/signup.js')(app);
 
 app.listen(port, function(err) {
 

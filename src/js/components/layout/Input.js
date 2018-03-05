@@ -12,8 +12,8 @@ import SuccessIcon from "./../SuccessIcon.js"
 })
 
 export default class Input extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.divStyle = "inp";
     this.labelStyle = "labelText";
     this.inputStyle = "inpt";
@@ -33,19 +33,9 @@ export default class Input extends React.Component {
       formValid: false,
     };
 
-    this.handleOnFocus = this.handleOnFocus.bind(this);
-    this.handleOnBlur = this.handleOnBlur.bind(this);
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.isEmpty = this.isEmpty.bind(this);
-    this.isLower = this.isLower.bind(this);
-    this.isUpper = this.isUpper.bind(this);
-    this.isNum = this.isNum.bind(this);
-    this.isSpecial = this.isSpecial.bind(this);
-    this.minEight = this.minEight.bind(this);
-    this.EmailValid = this.EmailValid.bind(this);
   }
 
-  isEmpty(event) {
+  isEmpty = (event) => {
     if (event.target.value.length > 0) {
       return false;
     } else {
@@ -53,7 +43,7 @@ export default class Input extends React.Component {
     }
   }
 
-  minEight(event) {
+  minEight = (event) => {
     if (event.target.value.length > 7) {
       this.setState({toggleMinEight: true});
     }
@@ -62,7 +52,7 @@ export default class Input extends React.Component {
     }
   }
 
-  isLower(event) {
+  isLower = (event) => {
     var regex = /[a-z]+/;
     if (regex.test(event.target.value)) {
       this.setState({toggleIsLower: true});
@@ -72,7 +62,7 @@ export default class Input extends React.Component {
     }
   }
 
-  isUpper(event) {
+  isUpper = (event) => {
     var regex = /[A-Z]+/;
     if (regex.test(event.target.value)) {
       this.setState({toggleIsUpper: true});
@@ -82,7 +72,7 @@ export default class Input extends React.Component {
     }
   }
 
-  isSpecial(event) {
+  isSpecial = (event) => {
     var regex = /[~@#$%^&*()_+={}|;',?]+/;
     if (regex.test(event.target.value)) {
       this.setState({toggleIsSpecial: true});
@@ -92,7 +82,7 @@ export default class Input extends React.Component {
     }
   }
 
-  EmailValid(event) {
+  emailValid = (event) => {
     var regex = /\b^[a-z][a-z][a-z][a-z]+\w*[_.]*[a-z0-9]+$\b/;
     if (regex.test(event.target.value)) {
       this.setState({toggleEmailValid: true});
@@ -102,7 +92,7 @@ export default class Input extends React.Component {
     }
   }
 
-  isNum(event) {
+  isNum = (event) => {
     var regex = /[0-9]+/;
     if (regex.test(event.target.value)) {
       this.setState({toggleIsNum: true});
@@ -112,7 +102,7 @@ export default class Input extends React.Component {
     }
   }
 
-  handleOnFocus(event) {
+  handleOnFocus = (event) => {
     this.setState({toggleFocus: true});
     switch (true) {
     case (event.target.name == 'signUpPass'): {
@@ -126,7 +116,7 @@ export default class Input extends React.Component {
   }
   }
 
-  handleOnBlur(event) {
+  handleOnBlur = (event) => {
     if (this.isEmpty(event)) {
       this.setState({toggleFocus: false});
     } else {
@@ -143,7 +133,7 @@ export default class Input extends React.Component {
     this.setState({passShow: false, userShow: false});
   }
 
-  handleOnChange(event) {
+  handleOnChange = (event) => {
     if (this.isEmpty(event)) {
       this.error = this.props.name + " can't be empty ";
       this.setState({toggleError: true});
@@ -185,7 +175,7 @@ export default class Input extends React.Component {
           {
             this.props.verifyUser.username = event.target.value;
             this.minEight(event);
-            this.EmailValid(event);
+            this.emailValid(event);
             break;
           }
         case 'signUpPass':
