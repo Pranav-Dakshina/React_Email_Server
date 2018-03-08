@@ -1,7 +1,7 @@
 {
-  "name": "react-tutorials",
-  "version": "0.0.0",
-  "description": "",
+  "name": "Thabpet",
+  "version": "0.1.0",
+  "description": "Thabpet is new fast and efficient Email which offers cool new features and provides you with a difference experience compared to traditional email.",
   "main": "app.js",
   "dependencies": {
     "@babel/core": "^7.0.0-beta.37",
@@ -57,7 +57,6 @@
     "redux-promise-middleware": "^4.4.2",
     "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6",
-    "sendbird": "^3.0.48",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.1.2",
     "webpack": "^3.10.0",
