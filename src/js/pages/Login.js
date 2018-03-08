@@ -89,17 +89,25 @@ class Login extends React.Component {
     });
   }
 
+  signUpTooltip = () => {
+    return  <div class="tooltip_style">
+              Create an account
+            </div>
+  }
+
+  signInTooltip = () => {
+    return <div class="tooltip_style">
+              Log in to ur account
+           </div>
+  }
+
   renderSignUp = () => {
-    const iconStyle = {
-      width: '30px',
-      height: '30px',
-    };
     return <form class='form' id='formSignUp' name='signUpForm' onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
               ? this.popout
               : this.popin} noValidate>
               <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
-                <img id='signInImg' src='signIn_white.png' alt='' style={iconStyle}/>
-                {this.state.TooltipSignIn ? signInTooltip : ''}
+                <img id='signInImg' class='icon_style' src='signIn_white.png' alt=''/>
+                {this.state.TooltipSignIn ? this.signInTooltip() : ''}
               </div>
               <Input id='signUpFname' name='Firstname' type='text'/>
               <Input id='signUpLname' name='Lastname' type='text'/>
@@ -111,10 +119,6 @@ class Login extends React.Component {
   }
 
   renderSignIn = () => {
-    const iconStyle = {
-      width: '30px',
-      height: '30px',
-    };
     return <form class='form' id='formSignIn' name='signInForm' onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
               ? this.popin
               : this.popout} noValidate>
@@ -122,8 +126,8 @@ class Login extends React.Component {
                 {(this.props.verify != false) ? ' ' : 'Incorrect Username and Password'}
               </div>
               <div name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
-                <img id='signUpImg' src='signUp_white.png' alt='' style={iconStyle} />
-                  {this.state.TooltipSignUp ? signUpTooltip : <div></div>}
+                <img id='signUpImg' class='icon_style' src='signUp_white.png' alt='' />
+                  {this.state.TooltipSignUp ? this.signUpTooltip() : <div></div>}
               </div>
               <Input id='username' name='Username' type='text'/>
               <Input id='password' name='Password' type='password'/>
@@ -132,31 +136,6 @@ class Login extends React.Component {
   }
 
   render() {
-
-
-    const tooltipStyle = {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      color: 'white',
-      fontWeight: '400',
-      textShadow: '2px 2px 2px #000000',
-      marginLeft: -150,
-      marginTop: -50,
-      width: 150,
-    }
-
-    const signUpTooltip = (
-      <div style={tooltipStyle}>
-        Create an account
-      </div>
-    );
-
-    const signInTooltip = (
-      <div style={tooltipStyle}>
-        Log in to ur account
-      </div>
-    );
-
     const { cookies } = this.props;
     const { fetched } = this.props.signin;
     const { submitted } = this.props.signup;

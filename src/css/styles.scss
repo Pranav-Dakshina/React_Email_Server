@@ -164,6 +164,22 @@ a {
   width: 220px !important;
 }
 
+.icon_style {
+  width: 30px;
+  height: 30px;
+}
+
+.tooltip_style {
+  position: absolute;
+  background-color: transparent;
+  color: white;
+  font-weight: 400;
+  text-shadow: 2px 2px 2px #000000;
+  margin-left: -150px;
+  margin-top: -50px;
+  width: 150;
+}
+
 .inp {
   /*font: "Book Antiqua";*/
   font-size: 0.8em;
