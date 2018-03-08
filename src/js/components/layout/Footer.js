@@ -2,17 +2,11 @@ import React from "react"
 import { Modal, ModalHeader, ModalBody } from "reactstrap"
 
 export default class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-  }
-
   state = {
     toggleAbout: false,
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       toggleAbout: !this.state.toggleAbout,
     })
