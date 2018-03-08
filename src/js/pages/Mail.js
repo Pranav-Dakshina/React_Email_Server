@@ -57,9 +57,20 @@ export default class Mail extends React.Component {
     if (value.length > 0) {
       this.setState({
         content: this.props.user.content.filter((data) =>
-          (data.to.toLowerCase().includes(value.toLowerCase()) ||
-           data.subject.toLowerCase().includes(value.toLowerCase()) ||
-           data.from.toLowerCase().includes(value.toLowerCase())))
+          (
+            data.to.some((val) =>
+              val.address.toLowerCase().includes(value.toLowerCase())
+              || val.name.toLowerCase().includes(value.toLowerCase())
+            )
+           ||
+           data.subject.toLowerCase().includes(value.toLowerCase())
+           ||
+           data.from.some((val) =>
+           val.address.toLowerCase().includes(value.toLowerCase())
+           || val.name.toLowerCase().includes(value.toLowerCase())
+           )
+          )
+        )
       })
     } else {
       this.setState({

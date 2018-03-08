@@ -13,8 +13,8 @@ const persistConfig = {
   storage: storage,
 };
 
-const middleware = applyMiddleware(promise(), thunk, createLogger());
-// const middleware = applyMiddleware(promise(), thunk);
+// const middleware = applyMiddleware(promise(), thunk, createLogger());
+const middleware = applyMiddleware(promise(), thunk);
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 

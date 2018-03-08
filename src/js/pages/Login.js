@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Redirect, Link, Route } from 'react-router-dom'
 import { Tooltip } from 'reactstrap'
@@ -12,7 +12,11 @@ import { submitSignUp } from '../actions/signUpActions'
 import Input from '../components/layout/Input';
 
 @connect((store) => {
-  return {user: store.signin.user, verifyUser: store.signup.form, verify: store.signin.verify,}
+  return {
+    signin: store.signin,
+    signup: store.signup,
+    verify: store.signin.verify,
+  }
 })
 
 class Login extends React.Component {
@@ -37,13 +41,9 @@ class Login extends React.Component {
       toggleSignInDisplay: true,
       TooltipSignIn: false,
       TooltipSignUp: false,
-      show: true
+      show: true,
+      apiCalled: false
     };
-    // this.handleClick = this.handleClick.bind(this);
-    // this.formSubmit = this.formSubmit.bind(this);
-    // this.formSignUp = this.formSignUp.bind(this);
-    // this.toggleSignUpPop = this.toggleSignUpPop.bind(this);
-    // this.toggleSignInPop = this.toggleSignInPop.bind(this);
   }
 
   handleClick = () => {
@@ -55,17 +55,25 @@ class Login extends React.Component {
 
   formSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch(loginAuthenticate(this.props.user.username, this.props.user.password));
+    let { user } = this.props.signin;
+    this.setState({
+      apiCalled: true
+    });
+    this.props.dispatch(loginAuthenticate(user.username, user.password));
   }
 
   formSignUp = (event) => {
     event.preventDefault();
+    let { form } = this.props.signup;
     let data = {
-      firstname: this.props.verifyUser.firstname,
-      lastname: this.props.verifyUser.lastname,
-      username: this.props.verifyUser.username,
-      password: this.props.verifyUser.password,
-    }
+      firstname: form.firstname,
+      lastname: form.lastname,
+      username: form.username,
+      password: form.password,
+    };
+    this.setState({
+      apiCalled: true
+    });
     this.props.dispatch(submitSignUp(data));
   }
 
@@ -81,73 +89,70 @@ class Login extends React.Component {
     });
   }
 
+  signUpTooltip = () => {
+    return  <div class="tooltip_style">
+              Create an account
+            </div>
+  }
+
+  signInTooltip = () => {
+    return <div class="tooltip_style">
+              Log in to ur account
+           </div>
+  }
+
+  renderSignUp = () => {
+    return <form class='form' id='formSignUp' name='signUpForm' onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
+              ? this.popout
+              : this.popin} noValidate>
+              <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
+                <img id='signInImg' class='icon_style' src='signIn_white.png' alt=''/>
+                {this.state.TooltipSignIn ? this.signInTooltip() : ''}
+              </div>
+              <Input id='signUpFname' name='Firstname' type='text'/>
+              <Input id='signUpLname' name='Lastname' type='text'/>
+              <Input id='signUpUser' name='Username' type='text'/>
+              <Input id='signUpPass' name='Password' type='password'/>
+              <Input id='signUpCpass' name='Confirm Password' type='password'/>
+              <button class='btn btn-primary' type='submit' >Submit</button>
+            </form>
+  }
+
+  renderSignIn = () => {
+    return <form class='form' id='formSignIn' name='signInForm' onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
+              ? this.popin
+              : this.popout} noValidate>
+              <div class='login-err'>
+                {(this.props.verify != false) ? ' ' : 'Incorrect Username and Password'}
+              </div>
+              <div name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
+                <img id='signUpImg' class='icon_style' src='signUp_white.png' alt='' />
+                  {this.state.TooltipSignUp ? this.signUpTooltip() : <div></div>}
+              </div>
+              <Input id='username' name='Username' type='text'/>
+              <Input id='password' name='Password' type='password'/>
+              <button class='btn btn-primary' type='submit'>Submit</button>
+            </form>
+  }
+
   render() {
-    const iconStyle = {
-      width: '30px',
-      height: '30px',
-    };
-
-    const tooltipStyle = {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      color: 'white',
-      fontWeight: '400',
-      textShadow: '2px 2px 2px #000000',
-      marginLeft: -150,
-      marginTop: -50,
-      width: 150,
-    }
-
-    const signUpTooltip = (
-      <div style={tooltipStyle}>
-        Create an account
-      </div>
-    );
-
-    const signInTooltip = (
-      <div style={tooltipStyle}>
-        Log in to ur account
-      </div>
-    );
-
     const { cookies } = this.props;
+    const { fetched } = this.props.signin;
+    const { submitted } = this.props.signup;
 
     return (
-      <div>
+      <Fragment>
         { cookies.get('uid') != null
           ? <div><Redirect to='/mail' /></div>
           : ' ' }
-        <div>
-          <form class='form' id='formSignIn' name='signInForm' onSubmit={this.formSubmit} style={this.state.toggleSignInDisplay
-            ? this.popin
-            : this.popout} noValidate>
-            <div class='login-err'>
-              {(this.props.verify != false) ? ' ' : 'Incorrect Username and Password'}
-            </div>
-            <div name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
-              <img id='signUpImg' src='signUp_white.png' alt='' style={iconStyle} />
-                {this.state.TooltipSignUp ? signUpTooltip : <div></div>}
-            </div>
-            <Input id='username' name='Username' type='text'/>
-            <Input id='password' name='Password' type='password'/>
-            <button class='btn btn-primary' type='submit'>Submit</button>
-          </form>
-          <form class='form' id='formSignUp' name='signUpForm' onSubmit={this.formSignUp} style={this.state.toggleSignInDisplay
-            ? this.popout
-            : this.popin} noValidate>
-            <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
-              <img id='signInImg' src='signIn_white.png' alt='' style={iconStyle}/>
-              {this.state.TooltipSignIn ? signInTooltip : ''}
-            </div>
-            <Input id='signUpFname' name='Firstname' type='text'/>
-            <Input id='signUpLname' name='Lastname' type='text'/>
-            <Input id='signUpUser' name='Username' type='text'/>
-            <Input id='signUpPass' name='Password' type='password'/>
-            <Input id='signUpCpass' name='Confirm Password' type='password'/>
-            <button class='btn btn-primary' type='submit' >Submit</button>
-          </form>
-        </div>
-      </div>
+        { (this.state.apiCalled &&
+          !this.props.signin.fetched) ? <img class="loading" src="loading-wedge.svg" alt="" />
+                                    :  <Fragment>
+                                        {this.renderSignIn()}
+                                        {this.renderSignUp()}
+                                      </Fragment>
+        }
+      </Fragment>
     )
   }
 };
