@@ -3,27 +3,20 @@ module.exports = function(app)
   var LoginModel = require("./../models/loginModel.js");
   var bcrypt = require('bcrypt');
   var passport = require('passport');
-  var IMAPserver = require('imap');
-  const MailParser = require('mailparser')
-    .MailParser;
-  const simpleParser = require('mailparser')
-    .simpleParser;
-  var inspect = require('util')
-    .inspect;
+
   const nodemailer = require('nodemailer');
-
-  var parser = new MailParser();
-
-  var content = [];
-  let mailmsg = {};
-  // let transporter = {};
 
   app.route('/auth/signin')
     .post(passport.authenticate('local', {
             failureRedirect: '/'
         }), function(req, res) {
-            console.log("req.user: ",req.user);
-            console.log("res.user: ",res.user);
+            // console.log("req.user: ",req.user);
+            res.cookie('uid', req.user.id);
+            var dbOut = {
+              content: req.user,
+              verify: true,
+            }
+            res.json(dbOut);
         }
     );
 

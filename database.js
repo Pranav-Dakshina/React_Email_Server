@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/thabpet', options)
     () =>
     {
       console.log("Connected to MongoDB successfully!!");
-      require('./seed.js');
+      // require('./seed.js');
     },
     err =>
     {

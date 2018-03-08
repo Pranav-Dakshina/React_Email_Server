@@ -18,133 +18,81 @@ module.exports = function() {
         {
           if (bcrypt.compareSync(password, results[0].password))
           {
-            console.log("Retrieved successfully");
-            var IMAPserver = require('imap');
-            const MailParser = require('mailparser')
-              .MailParser;
-            const simpleParser = require('mailparser')
-              .simpleParser;
-            var inspect = require('util')
-              .inspect;
-            const imap = new IMAPserver({
-              user: 'test@thabpet.com',
-              password: 'pass',
-              host: 'thabpet.com',
-              port: 993,
-              tls: true
+            var MailListener = require("mail-listener4");
+            let content = [];
+            let total = 0;
+            let count = 0;
+
+            var mailListener = new MailListener({
+              username: username,
+              password: password,
+              host: "thabpet.com",
+              port: 993, // imap port
+              tls: true,
+              connTimeout: 10000, // Default by node-imap
+              authTimeout: 5000, // Default by node-imap,
+              debug: null, // Or your custom function with only one incoming argument. Default: null
+              tlsOptions: { rejectUnauthorized: false },
+              mailbox: "INBOX", // mailbox to monitor
+              searchFilter: ["ALL"], // the search filter being used after an IDLE notification has been retrieved
+              markSeen: true, // all fetched email willbe marked as seen and not fetched next time
+              fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
+              mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib.
+              attachments: true, // download attachments as they are encountered to the project directory
+              attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments
             });
 
-            function openInbox(cb) {
-              imap.openBox('INBOX', true, cb);
-            }
+            mailListener.start(); // start listening
 
-            var content = [];
-            imap.once('ready', function() {
-              console.log('ready');
-              openInbox(function(err, box) {
-                if (err) throw err;
-                var f = imap.seq.fetch(box.messages.total + ':1', {
-                  bodies: [''],
-                  struct: true
-                });
-                f.on('message', function(msg, seqno) {
-                  var prefix = '(#' + seqno + ') ';
-                  console.log('message');
-                  let mailmsg = {};
-                  msg.on('body', function(stream, info) {
-                    var mp = new MailParser();
+            // stop listening
+            //mailListener.stop();
 
-                    mp.on('data', data => {
-                        var body = {};
-                        if(data.type === 'text'){
-                          // console.log('Text : ' ,data.text);
-                          // console.log('HTML : ' ,data.html);
-                          // console.log('TextAsHtml : ' ,data.textAsHtml);
-                          body["html"] = data.html;
-                          body["text"] = data.text;
-                          body["textAsHtml"] = data.textAsHtml;
-                        }
-                        mailmsg["body"] = body;
-
-                        if(data.type === 'attachment'){
-                            // console.log(data.filename);
-                            // data.content.pipe(process.stdout);
-                            // data.content.on('end', ()=>data.release());
-                        }
-                    });
-
-                    mp.on('headers', function(mail) {
-                      // console.log('headers');
-
-                      // var to = {};
-                      // to["address"] = mail.get('to').value[0].address;
-                      // to["name"] = mail.get('to').value[0].name;
-
-                      mailmsg["to"] = mail.get('to').text;
-
-                      // var from = {};
-                      // from["address"] = mail.get('from').value[0].address;
-                      // from["name"] = mail.get('from').value[0].name;
-
-                      mailmsg["from"] = mail.get('from').text;
-
-                      if (mail.has('subject')) {
-                        mailmsg["subject"] = mail.get('subject');
-                      } else {
-                        mailmsg["subject"] = "No Subject";
-                      }
-
-                    });
-
-                    stream.pipe(mp);
-                  });
-
-                  msg.once('attributes', function(attrs) {
-                    // attrs here is an *object* containing email metadata
-                    mailmsg["attrs"] = attrs;
-                    content.push(mailmsg);
-                    // console.log('Content : ',content);
-                  });
-
-                  msg.on('end', function() {
-                    // console.log('Done fetching all messages');
-                    // imap.end();
-                  });
-
-                });
-
-                f.once('error', function(err) {
-                  // console.log('Fetch error: ' + err);
-                });
-
-                f.once('end', function() {
-                  // console.log('Done fetching all messages!');
-                   imap.end();
-                });
-
-              });
-
+            mailListener.on("server:connected", function(){
+              console.log("imapConnected");
             });
 
-            imap.once('error', function(err)
-            {
+            mailListener.on("mailbox", function(mailbox){
+              // console.log("Mailbox: ", mailbox.messages.total);
+              total = mailbox.messages.total
+            });
+
+            mailListener.on("server:disconnected", function(){
+              console.log("imapDisconnected");
+            });
+
+            mailListener.on("error", function(err){
               console.log(err);
             });
 
-            imap.once('end', function()
-            {
-              // console.log('af push',content);
-              // console.log('Cction ended');
-              console.log('Client Ip : ', req.ip);
-              res.cookie('uid', results[0]._id);
-              var user = {
-                content: content,
-                verify: true,
-              }
-              done(null, user);
+            mailListener.on("attachment", function(attachment){
+              console.log(attachment.path);
             });
 
-            // imap.connect();
+            mailListener.on("mail", function(mail, seqno, attributes){
+              // do something with mail object including attachments
+              // console.log("HTML :", mail.html);
+              // console.log("To :", mail.to);
+              // console.log("from :", mail.from);
+              // console.log("SUB :", mail.subject);
+              // console.log("seqno: ", seqno);
+              // console.log("attributes: ", attributes);
+              // mail processing code goes here
+              let mailmsg = {
+                to: mail.to,
+                from: mail.from,
+                subject: mail.subject,
+                html: mail.html,
+                id: results[0]._id
+              }
+              content.push(mailmsg)
+              ++count;
+              if(count == total) {
+                mailListener.stop()
+                done(null, content);
+              }
+            });
+            // it's possible to access imap object from node-imap library for performing additional actions. E.x.
+            // mailListener.imap.move(:msguids, :mailboxes, function(){})
           }
           else {
              done(null, false, {message: 'Bad password'});

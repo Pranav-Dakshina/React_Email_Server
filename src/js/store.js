@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore, compose } from "redux";
 
-// import { createLogger } from "redux-logger"
+import { createLogger } from "redux-logger"
 import thunk from "redux-thunk";
 import promise from "redux-promise-middleware";
 import { persistStore, persistReducer } from 'redux-persist';
@@ -13,8 +13,8 @@ const persistConfig = {
   storage: storage,
 };
 
-// const middleware = applyMiddleware(promise(), thunk, createLogger());
-const middleware = applyMiddleware(promise(), thunk);
+const middleware = applyMiddleware(promise(), thunk, createLogger());
+// const middleware = applyMiddleware(promise(), thunk);
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 

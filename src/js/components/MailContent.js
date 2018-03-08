@@ -40,7 +40,8 @@ export default class MailContent extends React.Component {
          <img class="fl_left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
          <div class="fl_left" id="mail_cont_det">
            <div class="mail_cont_addr">
-             {cont.from}
+             {cont.from[0].name ? cont.from[0].name
+                                : cont.from[0].address}
            </div>
            <div class="mail_cont_subj">
              {cont.subject}

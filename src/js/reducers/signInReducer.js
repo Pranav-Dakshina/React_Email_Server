@@ -81,6 +81,19 @@ export default function reducer(state = {
           sent: true,
         }
       }
+    case "SUBMIT_SIGNUP_FULFILLED":
+      {
+        return {
+          fetching: false,
+          fetched: true,
+          verify: action.payload.data.verify,
+          user:
+          {
+            ...state.user,
+            content: action.payload.data.content,
+          }
+        }
+      }
     case "RESET_FULFILLED":
       {
         return {

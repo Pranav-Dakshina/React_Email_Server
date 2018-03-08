@@ -6,7 +6,7 @@ import { mailViewRemove } from '../actions/mailViewActions.js'
 
 const propTypes = {
   cont: PropTypes.shape({
-    from: PropTypes.string.isRequired,
+    from: PropTypes.array.isRequired,
     to: PropTypes.array.isRequired
   })
 }
@@ -28,19 +28,22 @@ class MailView extends React.Component {
         </div>
         <div class="wid fl_left">
           <strong>
-            {cont.from}
+            {cont.from[0].name ? cont.from[0].name + ' <' + cont.from[0].address + '>'
+                               : cont.from[0].address}
           </strong>
         </div>
         <div class="wid fl_left">
           <strong>
             <span>To: </span>
-            <a>
-               {cont.to};
-            </a>
           </strong>
+          <a>
+             {cont.to.map((to, index) => {
+               return to.name ? to.name + ' <' + to.address + '>; '
+                              : to.address + '; '
+             })}
+          </a>
         </div>
-        <div class="wid fl_left mail_view_html">
-          cont.body.text
+        <div class="wid fl_left mail_view_html" dangerouslySetInnerHTML={{ __html: cont.html }} >
         </div>
       </div>
     )

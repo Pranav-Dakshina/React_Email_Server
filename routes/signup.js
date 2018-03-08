@@ -5,6 +5,8 @@ module.exports = function(app)
   const sql = require('mysql');
   const nodemailer = require('nodemailer');
   const axios = require('axios');
+  const passport = require('passport');
+  const fs = require('fs');
 
   app.route('/submitSignUp')
     .post(function(req, res)
@@ -15,7 +17,11 @@ module.exports = function(app)
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: user,
-        password: pass
+        password: pass,
+        img: {
+          data: fs.readFileSync('./public/images/avatar.jpg'),
+          contentType: 'image/jpeg'
+        }
       }
       LoginModel(data)
         .save()
@@ -38,10 +44,10 @@ module.exports = function(app)
           con.query('INSERT INTO virtual_users (domain_id, password , email) VALUES(1, ENCRYPT(?, CONCAT(\'$6$\', SUBSTRING(SHA(RAND()), -16))), ?);',
           [req.body.password, user],
           (error, results) => {
-             console.log("Error: ", error);
+             // console.log("Error: ", error);
              if(!error) {
-               nodemailer.createTestAccount((err) =>
-               {
+               // nodemailer.createTestAccount((err) =>
+               // {
                  // create reusable transporter object using the default SMTP transport
                  let transporter = nodemailer.createTransport(
                  {
@@ -55,39 +61,41 @@ module.exports = function(app)
                    }
                  });
 
-                 let To = data.username + '@thabpet.com'
+                 // console.log("Username: ",user);
                  let mailOptions = {
-                   to: To,
+                   to: user,
                    from: 'admin@thabpet.com',
                    subject: 'Welcome to Thabpet',
-                   text: '<p>Welcome to Thabpet</p><p>Thanks and Regards</p><p>Pranav Dakshinamurthy</p>'
+                   html: '<p>Welcome to Thabpet</p><p>Thanks and Regards</br>Admin Thabpet</p>'
                  };
                  // send mail with defined transport object
-                 transporter.sendMail(mailOptions, (error, info) =>
-                 {
-                   if (error)
-                   {
-                     return console.log(error);
-                   }
+                 transporter.sendMail(mailOptions).then((info) => {
                    console.log('Message sent: %s', info.messageId);
                    // Preview only available when sending through an Ethereal account
                    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
                    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
                    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+                   req.body = {
+                     user: user,
+                     pass: req.body.password
+                   }
+                   // console.log("req.body: ", req.body);
 
+                   passport.authenticate('local')(req, res,() => {
+                     // console.log("req.user: ",req.user);
+                     res.cookie('uid', req.user.id);
+                     var dbOut = {
+                       content: req.user,
+                       verify: true,
+                     }
+                     res.json(dbOut);
+                   });
+                 })
+                 .catch((error) => {
+                   console.log(error);
                  });
-               });
-               let dbSend = {
-                 username: user,
-                 password: req.body.password
-               }
-               app.post('http://localhost:8080/auth/signin',function(req, res) {
-                 res.send(dbSend)
-               })
-               let dbOut = {
-                 submitted: true,
-               }
-               res.json(dbOut);
+              // })
+
             } else {
               console.log(error);
             }
