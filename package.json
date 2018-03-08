@@ -77,6 +77,9 @@
     "webpack": "webpack --watch --progress",
     "lint": "esw webpack.config.* src --color"
   },
-  "author": "",
+  "author": {
+    "name" : "Sreenivasa SB Ayyalasomayajula & Pranav Dakshinamurthy",
+    "email" : "pranav.dakshina@gmail.com"
+},
   "license": "MIT"
 }
