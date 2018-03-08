@@ -456,6 +456,12 @@ a {
 #tooltip {
   background: transparent !important; }
 
+.loading {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  z-index: 12; }
+
 .tool_tip {
   font-weight: 400;
   position: absolute;
