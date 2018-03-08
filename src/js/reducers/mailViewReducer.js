@@ -26,6 +26,12 @@ export default function reducer(state = {
           content: data
         }
       }
+    case "RESET_FULFILLED":
+      {
+        return {
+          content: []
+        }
+      }
   }
 
   return state

@@ -1,10 +1,11 @@
-process.env.NODE_ENV = 'production';
-// process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 var debug = process.env.NODE_ENV !== 'production';
 // var debug = false;
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var ExtractTextPlugin = require('extract-css-chunks-webpack-plugin');
 // require('babel-polyfill');
 
 module.exports = {

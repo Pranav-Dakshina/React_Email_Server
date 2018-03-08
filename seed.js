@@ -29,6 +29,16 @@ var initial = [
     data: fs.readFileSync('./public/images/me.jpg'),
     contentType: 'image/jpeg',
   }
+},
+{
+  firstname: "Email",
+  lastname: "Email",
+  username: "email@thabpet.com",
+  password: pass2,
+  img: {
+    data: fs.readFileSync('./public/images/me.jpg'),
+    contentType: 'image/jpeg',
+  }
 }];
 
 initial.forEach(function(user)

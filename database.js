@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let options = {
   useMongoClient: true,
-  autoIndex: false, // Don't build indexes
+  autoIndex: true, // build indexes
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
   reconnectInterval: 500, // Reconnect every 500ms
   poolSize: 10, // Maintain up to 10 socket connections
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/thabpet', options)
     () =>
     {
       console.log("Connected to MongoDB successfully!!");
-      require('./seed.js');
+      // require('./seed.js');
     },
     err =>
     {
