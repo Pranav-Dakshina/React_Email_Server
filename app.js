@@ -6,6 +6,8 @@ const session = require('express-session');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+// const corsMiddleware = require('cors-prefetch-middleware');
+// import corsPrefetch from 'cors-prefetch-middleware';
 const config = require('./webpack.config.js');
 
 // const Comb = require('csscomb');
@@ -18,8 +20,8 @@ const app = new express();
 
 // var port = 5000;
 var port = 8080;
-process.env.NODE_ENV = 'production';
-// process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 if (process.env.NODE_ENV !== "production") {
@@ -63,6 +65,7 @@ app.use(bodyparser.urlencoded(
   extended: false
 }));
 app.use(bodyparser.json());
+// app.use(corsMiddleware.corsPrefetch());
 
 app.use(cookieParser('Thabpet'));
 app.use(session({

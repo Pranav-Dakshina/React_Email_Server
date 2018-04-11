@@ -1,6 +1,11 @@
-$primary-color: #244da6;
+$primary-color: #244DA6;
+
+@mixin bg-color($opacity: 1) {
+  background-color: rgba($primary-color, $opacity);
+}
 
 @import 'mailstyle';
+@import 'upload';
 
 // @font-face {
 //   font-family: myFirstFont;
@@ -51,11 +56,12 @@ canvas {
 }
 
 .div_srch {
-  width: 220px;
-  height: 60px;
   position: absolute;
   top: 5px;
   left: 200px;
+
+  width: 220px;
+  height: 60px;
 }
 
 .div_srch:focus-within {
@@ -172,14 +178,77 @@ a {
 }
 
 .tooltip_style {
-  position: absolute;
-  background-color: transparent;
-  color: white;
   font-weight: 400;
-  text-shadow: 2px 2px 2px #000000;
-  margin-left: -150px;
-  margin-top: -50px;
+
+  position: absolute;
+
   width: 150;
+  margin-top: -50px;
+  margin-left: -150px;
+
+  color: white;
+  background-color: transparent;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+.sett_dp {
+  width: 100%;
+  height: 160px;
+}
+
+.sett_img, .sett_hover {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: block;
+  overflow: hidden;
+
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+
+  vertical-align: middle;
+
+  border-radius: 50%;
+}
+
+.sett_img {
+  position: absolute;
+}
+
+.sett_hover {
+  position: absolute;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  opacity: 0;
+
+  @include bg-color(0.4);
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.sett_dp_text {
+  position: absolute;
+  top: 44%;
+  left: 25%;
+
+  vertical-align: middle;
+
+  opacity: 1;
+  color: white;
+}
+
+.img_style {
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 2px;
 }
 
 .inp {
@@ -275,9 +344,9 @@ a {
 
 .loading {
   position: absolute;
+  z-index: 12;
   top: 30%;
   left: 40%;
-  z-index: 12;
 }
 
 .tool_tip {

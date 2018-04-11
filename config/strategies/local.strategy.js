@@ -81,14 +81,17 @@ module.exports = function() {
                 to: mail.to,
                 from: mail.from,
                 subject: mail.subject,
-                html: mail.html,
-                id: results[0]._id
+                html: mail.html
               }
               content.push(mailmsg)
               ++count;
               if(count == total) {
                 mailListener.stop()
-                done(null, content);
+                let data = {
+                  content,
+                  id: results[0]._id
+                }
+                done(null, data);
               }
             });
             // it's possible to access imap object from node-imap library for performing additional actions. E.x.

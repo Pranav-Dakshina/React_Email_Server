@@ -2,7 +2,7 @@
   "name": "Thabpet",
   "version": "0.1.0",
   "description": "Thabpet is new fast and efficient Email which offers cool new features and provides you with a difference experience compared to traditional email.",
-  "main": "app.js",
+  "main": "server.js",
   "dependencies": {
     "@babel/core": "^7.0.0-beta.37",
     "@babel/preset-env": "^7.0.0-beta.37",
@@ -19,6 +19,7 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-beta",
     "cookie-parser": "^1.4.3",
+    "cors-prefetch-middleware": "^1.0.0",
     "css-loader": "^0.28.9",
     "csscomb-loader": "0.0.2",
     "ejs": "^2.5.7",
@@ -43,7 +44,9 @@
     "react-dom": "^16.2.0",
     "react-draggable": "^3.0.3",
     "react-iframe": "^1.1.0",
+    "react-images-uploader": "^1.1.0",
     "react-md": "^1.2.8",
+    "react-progress-button": "^5.1.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -65,21 +68,23 @@
     "webpack-hot-middleware": "^2.21.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "csscomb": "^4.2.0",
     "eslint": "^4.14.0",
     "eslint-plugin-react": "^7.5.1",
     "eslint-watch": "^3.1.3"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "build": "node app.js && webpack -d",
     "prod": "webpack -p &&  node app.js",
     "webpack": "webpack --watch --progress",
     "lint": "esw webpack.config.* src --color"
   },
   "author": {
-    "name" : "Sreenivasa SB Ayyalasomayajula & Pranav Dakshinamurthy",
-    "email" : "pranav.dakshina@gmail.com"
-},
+    "name": "Sreenivasa SB Ayyalasomayajula & Pranav Dakshinamurthy",
+    "email": "pranav.dakshina@gmail.com"
+  },
   "license": "MIT"
 }

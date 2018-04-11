@@ -99,7 +99,7 @@ class Sidebar extends React.Component {
 
     return (
       <Fragment>
-        <i class="fa fa-pencil fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fa fa-pencil fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.props.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleComposeToolTip ? ComposeTooltip : <div></div>}
         <i class="fa fa-inbox fs_30 msgtab_icon_bot" id="inbox" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleInboxToolTip ? InboxTooltip : <div></div>}
@@ -114,6 +114,10 @@ class Sidebar extends React.Component {
       </Fragment>
     )
   }
+}
+
+Sidebar.propTypes = {
+  ComposeMail: PropTypes.func.isRequired
 }
 
 export default Sidebar

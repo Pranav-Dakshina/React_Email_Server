@@ -115,7 +115,7 @@ export default class Mail extends React.Component {
         <Search handleFilter={this.handleFilter}/>
         <div>
           <div class="msgtab">
-             <Sidebar />
+             <Sidebar ComposeMail={this.ComposeMail} />
           </div>
           <div class="conttab">
              {this.state.content.map((cont,index) => {

@@ -1,10 +1,13 @@
+
 module.exports = function(app)
 {
-  var LoginModel = require("./../models/loginModel.js");
-  var bcrypt = require('bcrypt');
-  var passport = require('passport');
+  const LoginModel = require("./../models/loginModel.js");
+  const bcrypt = require('bcrypt');
+  const passport = require('passport');
 
   const nodemailer = require('nodemailer');
+  let transporter = {};
+  // import imagesUpload from 'images-upload-middleware';
 
   app.route('/auth/signin')
     .post(passport.authenticate('local', {
@@ -12,11 +15,19 @@ module.exports = function(app)
         }), function(req, res) {
             // console.log("req.user: ",req.user);
             res.cookie('uid', req.user.id);
-            var dbOut = {
-              content: req.user,
+            // console.log("Req.user: ", req.user.id);
+            transporter = nodemailer.createTransport(
+            {
+              host: 'thabpet.com',
+              port: 587,
+              secure: true, // true for 465, false for other ports
+              auth: req.body
+            });
+
+            res.json({
+              content: req.user.content,
               verify: true,
-            }
-            res.json(dbOut);
+            });
         }
     );
 
@@ -72,40 +83,33 @@ module.exports = function(app)
         });
     });
 
+  app.route('/chgDp')
+    .post(function(req, res)
+    {
+      console.log("Image: ",req.data);
+      res.status(200).send();
+    });
+
   app.route('/auth/sendmail')
     .post(function(req, res)
     {
-      nodemailer.createTestAccount((err) =>
+      // create reusable transporter object using the default SMTP transport
+      console.log("Transporter: ", transporter);
+      let mailOptions = req.body;
+      // send mail with defined transport object
+      transporter.sendMail(mailOptions, (error, info) =>
       {
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport(
+        if (error)
         {
-          host: 'thabpet.com',
-          port: 587,
-          secure: false, // true for 465, false for other ports
-          auth:
-          {
-            user: 'test@thabpet.com', // generated ethereal user
-            pass: 'pass', // generated ethereal password
-          }
-        });
-
-        let mailOptions = req.body;
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, (error, info) =>
-        {
-          if (error)
-          {
-            return console.log(error);
-          }
-          console.log('Message sent: %s', info.messageId);
-          // Preview only available when sending through an Ethereal account
-          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-          res.status(200)
-             .send();
-          // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
-          // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-        });
+          return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        res.status(200)
+           .send();
+        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
       });
 
     });
