@@ -55,8 +55,8 @@ class Dpdown extends React.Component {
     imgModal = () => {
       console.log('inside');
       if(this.state.toggleDp) {
-      return <Modal isOpen={this.state.toggleDp} toggle={this.state.toggleDp}>
-                <ModalHeader toggle={this.state.toggleDp}>Image</ModalHeader>
+      return <Modal isOpen={this.state.toggleDp} toggle={this.imgOnClick}>
+                <ModalHeader toggle={this.imgOnClick}>Image</ModalHeader>
                 <ModalBody>
                    <input type="file"/>
                 </ModalBody>

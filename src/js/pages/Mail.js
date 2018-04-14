@@ -21,30 +21,30 @@ import Search from '../components/Search'
 })
 
 export default class Mail extends React.Component {
+  state = {
+    value: "",
+    toggleCompose: false,
+    toggleComposeToolTip: false,
+    toggleInboxToolTip: false,
+    toggleSentToolTip: false,
+    toggleDraftsToolTip: false,
+    toggleTrashToolTip: false,
+    toggleSpamToolTip: false,
+    content: this.props.user.content,
+    view: []
+  }
 
   constructor(props) {
     super(props);
 
     document.title = 'Mail';
-    this.state = {
-      value: "",
-      toggleCompose: false,
-      toggleComposeToolTip: false,
-      toggleInboxToolTip: false,
-      toggleSentToolTip: false,
-      toggleDraftsToolTip: false,
-      toggleTrashToolTip: false,
-      toggleSpamToolTip: false,
-      content: this.props.user.content,
-      view: []
-    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
+  static getDerivedStateFromProps(nextProps) {
+    return {
       content: nextProps.user.content,
       view: nextProps.cont
-    })
+    }
   }
 
   ComposeMail = () => {
