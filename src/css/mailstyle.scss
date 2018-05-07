@@ -49,6 +49,9 @@
   .conttab {
     width: 57% !important;
   }
+  .mail_cont {
+    width: 510px !important;
+  }
 }
 
 .dp_down {
@@ -122,6 +125,15 @@
     width: 37.5% !important;
   }
 }
+
+.chatback {
+  background-color: white
+}
+
+// .chatname {
+//   font-size: 2rem;
+//   color: black;
+// }
 
 .z-4 {
   z-index: 4;
@@ -378,4 +390,8 @@
 
 #mail_cont_det {
   margin-left: 5px;
+}
+
+button.close:focus {
+  outline: none !important;
 }

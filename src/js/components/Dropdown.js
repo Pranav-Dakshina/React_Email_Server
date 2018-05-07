@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { instanceOf } from 'prop-types'
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
          Modal, ModalHeader, ModalBody } from 'reactstrap'
+import axios from 'axios'
 
 import { reset } from '../actions/signInActions'
 // import ImgUploader from './ImgUploader'
@@ -52,13 +53,24 @@ class Dpdown extends React.Component {
       cookies.remove('uid');
     }
 
+    fileHandler = (event) => {
+      // const file = event.target.files[0];
+      const data = new FormData();
+      data.append('file', event.target.files[0]);
+      data.append('filename', 'upload');
+      // console.log("File : ", file);
+      axios.post("/chgDp", data)
+           .then(() => console.log("Successfully uploaded"), () => console.log("Unsuccessfully uploaded"))
+           .catch((error) => console.log("Upload Error : ", error))
+    }
+
     imgModal = () => {
-      console.log('inside');
       if(this.state.toggleDp) {
       return <Modal isOpen={this.state.toggleDp} toggle={this.imgOnClick}>
                 <ModalHeader toggle={this.imgOnClick}>Image</ModalHeader>
                 <ModalBody>
-                   <input type="file"/>
+                   <input id="uploadDp" type="file" class="d-none" accept="image/*" onChange={this.fileHandler}/>
+                   <label class="cursor-pointer" htmlFor="uploadDp">Upload</label>
                 </ModalBody>
              </Modal>
       }
@@ -99,7 +111,7 @@ class Dpdown extends React.Component {
         <Fragment>
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
             <DropdownToggle className="dp_down" color="transparent">
-              <img class="img_style" src={imgSrc} alt="" />
+              <img class="img_style rounded" src={imgSrc} alt="" />
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem header>Thabpet</DropdownItem>

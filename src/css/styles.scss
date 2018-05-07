@@ -5,6 +5,7 @@ $primary-color: #244DA6;
 }
 
 @import 'mailstyle';
+@import 'loading';
 @import 'upload';
 
 // @font-face {
@@ -246,9 +247,9 @@ a {
 .img_style {
   width: 30px;
   height: 30px;
-
-  border: none;
-  border-radius: 2px;
+  // 
+  // border: none;
+  // border-radius: 2px;
 }
 
 .inp {
@@ -340,13 +341,6 @@ a {
 
 #tooltip {
   background: transparent !important;
-}
-
-.loading {
-  position: absolute;
-  z-index: 12;
-  top: 30%;
-  left: 40%;
 }
 
 .tool_tip {

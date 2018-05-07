@@ -16,6 +16,7 @@ import Input from '../components/layout/Input';
     signin: store.signin,
     signup: store.signup,
     verify: store.signin.verify,
+    message: store.signin.message
   }
 })
 
@@ -136,21 +137,32 @@ class Login extends React.Component {
   }
 
   render() {
-    const { cookies } = this.props;
-    const { fetched } = this.props.signin;
-    const { submitted } = this.props.signup;
+    const { cookies } = this.props
+    const { fetching } = this.props.signin
+    const { submitted } = this.props.signup
+    const { apiCalled } = this.state
 
     return (
       <Fragment>
         { cookies.get('uid') != null
           ? <div><Redirect to='/mail' /></div>
           : ' ' }
-        { (this.state.apiCalled &&
-          !this.props.signin.fetched) ? <img class="loading" src="loading-wedge.svg" alt="" />
-                                    :  <Fragment>
-                                        {this.renderSignIn()}
-                                        {this.renderSignUp()}
-                                      </Fragment>
+        { (apiCalled &&
+           fetching) ? <div>
+           <div class="modal fade show d-block">
+             <div class="loading">
+                 <div class="sk-chasing-dots">
+                   <div class="sk-child sk-dot1"></div>
+                   <div class="sk-child sk-dot2"></div>
+                 </div>
+               </div>
+             </div>
+             <div class="modal-backdrop fade show"></div>
+           </div>
+                     : <Fragment>
+                          {this.renderSignIn()}
+                          {this.renderSignUp()}
+                       </Fragment>
         }
       </Fragment>
     )

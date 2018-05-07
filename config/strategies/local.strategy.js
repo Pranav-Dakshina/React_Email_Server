@@ -81,7 +81,8 @@ module.exports = function() {
                 to: mail.to,
                 from: mail.from,
                 subject: mail.subject,
-                html: mail.html
+                html: mail.html,
+                text: mail.text
               }
               content.push(mailmsg)
               ++count;
@@ -89,7 +90,9 @@ module.exports = function() {
                 mailListener.stop()
                 let data = {
                   content,
-                  id: results[0]._id
+                  id: results[0]._id,
+                  firstname: results[0].firstname,
+                  lastname: results[0].lastname,
                 }
                 done(null, data);
               }
@@ -98,16 +101,14 @@ module.exports = function() {
             // mailListener.imap.move(:msguids, :mailboxes, function(){})
           }
           else {
-             done(null, false, {message: 'Bad password'});
+            console.log("Retrieved bad failed");
+            done(null, false, {message: 'Bad password'});
           }
         })
         .catch((error) =>
         {
           console.log("Retrieved failed");
-          console.log('Client Ip : ', req.ip);
-          // console.log(results[0].password);
-
-           done(null, false, {message: 'Incorrect username and password'});
+          done(null, false, {message: 'Incorrect username and password'});
         });
     }));
 };
