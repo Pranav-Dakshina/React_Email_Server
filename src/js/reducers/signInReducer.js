@@ -2,6 +2,8 @@ export default function reducer(state = {
   user:
   {
     id: null,
+    firstname: null,
+    lastname: null,
     username: null,
     password: null,
     img: {
@@ -21,6 +23,7 @@ export default function reducer(state = {
   fetching: null,
   fetched: null,
   verify: null,
+  message: null,
   sending: null,
   sent: null,
   error: null,
@@ -51,10 +54,14 @@ export default function reducer(state = {
           fetching: false,
           fetched: true,
           verify: action.payload.data.verify,
+          message: action.payload.data.message,
           user:
           {
             ...state.user,
             content: action.payload.data.content,
+            firstname: action.payload.data.firstname,
+            lastname: action.payload.data.lastname,
+            password: null,
           }
         }
       }

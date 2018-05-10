@@ -82,29 +82,33 @@ module.exports = function() {
                 from: mail.from,
                 subject: mail.subject,
                 html: mail.html,
-                id: results[0]._id
+                text: mail.text
               }
               content.push(mailmsg)
               ++count;
               if(count == total) {
                 mailListener.stop()
-                done(null, content);
+                let data = {
+                  content,
+                  id: results[0]._id,
+                  firstname: results[0].firstname,
+                  lastname: results[0].lastname,
+                }
+                done(null, data);
               }
             });
             // it's possible to access imap object from node-imap library for performing additional actions. E.x.
             // mailListener.imap.move(:msguids, :mailboxes, function(){})
           }
           else {
-             done(null, false, {message: 'Bad password'});
+            console.log("Retrieved bad failed");
+            done(null, false, {message: 'Bad password'});
           }
         })
         .catch((error) =>
         {
           console.log("Retrieved failed");
-          console.log('Client Ip : ', req.ip);
-          // console.log(results[0].password);
-
-           done(null, false, {message: 'Incorrect username and password'});
+          done(null, false, {message: 'Incorrect username and password'});
         });
     }));
 };

@@ -2,10 +2,10 @@
 .msgtab, .conttab, .chattab {
   position: absolute;
   top: 60px;
-  height: 800px;
 
   float: left;
 
+  height: 800px;
   padding: 10px;
 
   color: white;
@@ -48,6 +48,9 @@
 @media (max-width: 1080px) {
   .conttab {
     width: 57% !important;
+  }
+  .mail_cont {
+    width: 510px !important;
   }
 }
 
@@ -104,6 +107,7 @@
 @media (max-width: 1080px) {
   .mail_view {
     left: 50px !important;
+
     width: 95% !important;
   }
 }
@@ -122,6 +126,15 @@
   }
 }
 
+.chatback {
+  background-color: white
+}
+
+// .chatname {
+//   font-size: 2rem;
+//   color: black;
+// }
+
 .z-4 {
   z-index: 4;
 }
@@ -133,28 +146,35 @@
 .mail_view_html {
   overflow: scroll;
 
-  height: 520px;
-  margin-top: 10px;
-}
-
-.mail_view_html::-webkit-scrollbar-track {
+  height: 660px;
   margin-top: 10px;
 
-  border-radius: 10px;
-  background-color: transparent;
-}
+  &::-webkit-scrollbar-track {
+    margin-top: 10px;
+    width: 20px;
 
-.mail_view_html::-webkit-scrollbar {
-  width: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+  }
 
-  border-radius: 10px;
-  background-color: transparent;
-}
+  &::-webkit-scrollbar {
+    width: 10px;
 
-.mail_view_html::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    // background-color: rgba(255, 255, 255, 0.8);
+    @include bg-color(0.6);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    &:hover {
+      @include bg-color(1);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+
 }
 
 .drag_par {
@@ -337,14 +357,14 @@
   // max-width: 400px;
   height: 35px;
   padding: 5px 0px !important;
-  background-color: transparent !important;
+
   color: white !important;
+  background-color: transparent !important;
 }
 
 @media (max-width: 800px) {
   .srch {
     // float: left;
-
     width: 25%;
     // margin-left: 30px;
   }
@@ -370,4 +390,8 @@
 
 #mail_cont_det {
   margin-left: 5px;
+}
+
+button.close:focus {
+  outline: none !important;
 }

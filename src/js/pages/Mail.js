@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import Draggable from 'react-draggable'
 import { toast } from 'react-toastify'
+// import IdleTimer from 'react-idle-timer';
 
 import {sendMail} from '../actions/signInActions.js'
 
@@ -21,30 +22,35 @@ import Search from '../components/Search'
 })
 
 export default class Mail extends React.Component {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if(nextProps.user) {
+      return {
+        content: nextProps.user.content,
+        view: nextProps.cont
+      }
+    }
+  }
+
+  state = {
+    value: "",
+    toggleCompose: false,
+    toggleComposeToolTip: false,
+    toggleInboxToolTip: false,
+    toggleSentToolTip: false,
+    toggleDraftsToolTip: false,
+    toggleTrashToolTip: false,
+    toggleSpamToolTip: false,
+    content: this.props.user.content,
+    view: []
+  }
 
   constructor(props) {
     super(props);
 
     document.title = 'Mail';
-    this.state = {
-      value: "",
-      toggleCompose: false,
-      toggleComposeToolTip: false,
-      toggleInboxToolTip: false,
-      toggleSentToolTip: false,
-      toggleDraftsToolTip: false,
-      toggleTrashToolTip: false,
-      toggleSpamToolTip: false,
-      content: this.props.user.content,
-      view: []
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      content: nextProps.user.content,
-      view: nextProps.cont
-    })
+    // console.log("Naviagator : ", navigator);
+    // console.log("Location : ", location);
+    // console.log("window : ", window);
   }
 
   ComposeMail = () => {
@@ -69,6 +75,8 @@ export default class Mail extends React.Component {
            val.address.toLowerCase().includes(value.toLowerCase())
            || val.name.toLowerCase().includes(value.toLowerCase())
            )
+           ||
+           data.text.toLowerCase().includes(value.toLowerCase())
           )
         )
       })
@@ -109,13 +117,19 @@ export default class Mail extends React.Component {
   }
 
   render() {
+    const { user } = this.props
+    const imgSrc = '/auth/'+ user.username +'/profilePic';
+    const imgStyle = {
+      height: 50,
+      width: 50
+    }
 
     return (
       <Fragment>
         <Search handleFilter={this.handleFilter}/>
         <div>
           <div class="msgtab">
-             <Sidebar />
+             <Sidebar ComposeMail={this.ComposeMail} />
           </div>
           <div class="conttab">
              {this.state.content.map((cont,index) => {
@@ -124,7 +138,22 @@ export default class Mail extends React.Component {
                )
              })}
           </div>
-          <div class="chattab">
+          <div class="chattab rounded-left">
+            <div class="chatback h-auto w-auto p-1 rounded">
+              <div class="w-100 d-flex flex-row">
+                <div class="p-1">
+                  <img class="rounded" src={imgSrc} alt="User image" style={imgStyle} />
+                </div>
+                <div class="d-flex flex-column">
+                  <div class="mail_cont_addr pt-1 pl-1">
+                    {user.firstname}
+                  </div>
+                  <div class="text-success pl-1">
+                    Online
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           {this.state.view.length > 0
            ?  this.state.view.map((cont,index) => {
