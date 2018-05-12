@@ -5,12 +5,12 @@ This project was our attempt to create a modern themed email provider with a min
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-    
+
     Run npm install in cloned directory.
 
     Run npm run dev.
 
-    Open http://localhost:5000/
+    Open http://localhost:8080/
 
 ### Prerequisites
 
