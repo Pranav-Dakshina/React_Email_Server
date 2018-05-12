@@ -148,9 +148,9 @@ export default class Mail extends React.Component {
                   <div class="mail_cont_addr pt-1 pl-1">
                     {user.firstname}
                   </div>
-                  <div class="text-success pl-1">
+                  <small class="text-success pl-1">
                     Online
-                  </div>
+                  </small>
                 </div>
               </div>
             </div>
