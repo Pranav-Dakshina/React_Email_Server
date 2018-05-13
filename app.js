@@ -86,6 +86,10 @@ app.get('/sitemap.txt', function(req, res)
 require('./routes/login.js')(app);
 require('./routes/signup.js')(app);
 
+process.on('uncaughtException', function (err) {
+  console.log(err);
+})
+
 app.listen(port, function(err) {
 
 });
