@@ -39,7 +39,7 @@ module.exports = function(app)
                 transporter = nodemailer.createTransport(
                 {
                   host: 'thabpet.com',
-                  port: 587,
+                  port: 465,
                   secure: true, // true for 465, false for other ports
                   auth: req.body
                 });
@@ -162,14 +162,14 @@ module.exports = function(app)
     .post(function(req, res)
     {
       // create reusable transporter object using the default SMTP transport
-      console.log("Transporter: ", transporter);
+      // console.log("Transporter: ", transporter);
       let mailOptions = req.body;
       // send mail with defined transport object
       transporter.sendMail(mailOptions, (error, info) =>
       {
         if (error)
         {
-          return console.log(error);
+          return console.log("Trasnporter Error : ", error);
         }
         console.log('Message sent: %s', info.messageId);
         // Preview only available when sending through an Ethereal account

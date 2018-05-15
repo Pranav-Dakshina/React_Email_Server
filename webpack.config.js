@@ -3,8 +3,8 @@
 const debug = process.env.NODE_ENV !== 'production';
 // const debug = false;
 const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const path = require('path');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // var ExtractTextPlugin = require('extract-css-chunks-webpack-plugin');
 // require('babel-polyfill');

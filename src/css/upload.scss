@@ -86,26 +86,26 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
   width: 54px;
   padding: 0;
 
-  cursor: wait;;
+  cursor: wait;
 
   color: currentColor;
   border-width: 6.5px;
   border-color: #DDDDDD;
-  background-color: transparent;
+  background-color: transparent;;
 }
 .iu-button-container.loading .iu-button-button span {
   display: none;
 
   -webkit-transition: all 0.15s;
-          transition: all 0.15s;;
+          transition: all 0.15s;
 
-  opacity: 0;
+  opacity: 0;;
 }
 .iu-button-container.loading .iu-button-button .iu-button-progress-circle > path {
   -webkit-transition: opacity 0.15s 0.3s;
-          transition: opacity 0.15s 0.3s;;
+          transition: opacity 0.15s 0.3s;
 
-  opacity: 1;
+  opacity: 1;;
 }
 .iu-button-container.success .iu-button-button {
   border-color: #A0D468;
@@ -115,9 +115,9 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
   display: none;
 
   -webkit-transition: all 0.15s;
-          transition: all 0.15s;;
+          transition: all 0.15s;
 
-  opacity: 0;
+  opacity: 0;;
 }
 .iu-button-container.success .iu-button-button .iu-button-checkmark > path {
   opacity: 1;
@@ -130,9 +130,9 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
   display: none;
 
   -webkit-transition: all 0.15s;
-          transition: all 0.15s;;
+          transition: all 0.15s;
 
-  opacity: 0;
+  opacity: 0;;
 }
 .iu-button-container.error .iu-button-button .iu-button-cross > path {
   opacity: 1;
@@ -191,13 +191,13 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
   height: 100px;
   margin: 5px 10px 5px 0;
 
-  vertical-align: bottom;;
+  vertical-align: bottom;
 
   border: 1px solid #BEC3C7;
   border-radius: 10px;
   background-repeat: no-repeat;
   background-position: 50%;
-  background-size: cover;
+  background-size: cover;;
 }
 .iu-deletePreview {
   font-size: medium;
@@ -219,11 +219,11 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
 
   padding: 4px;
 
-  cursor: pointer;;
+  cursor: pointer;
 
   border: 1px solid #BEC3C7;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: #FFFFFF;;
 }
 .iu-fileInput {
   display: inline-block;
@@ -243,9 +243,9 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
   width: 100px;
   height: 100px;
 
-  cursor: pointer;;
+  cursor: pointer;
 
-  border-radius: 10px;
+  border-radius: 10px;;
 }
 .iu-pseudobutton span {
   height: 100%;
@@ -285,8 +285,8 @@ button::-moz-focus-inner, input[type=button]::-moz-focus-inner, input[type=file]
 }
 .iu-pseudobutton {
   width: 100px;
-  height: 100px;;
-  margin-top: 0;
+  height: 100px;
+  margin-top: 0;;
 }
 .iu-pseudobuttonContent {
   line-height: 1!important;
