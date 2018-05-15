@@ -26,7 +26,7 @@ var initial = [
   username: "test@thabpet.com",
   password: pass2,
   img: {
-    data: fs.readFileSync('./public/images/me.jpg'),
+    data: fs.readFileSync('./public/images/sreeni.jpg'),
     contentType: 'image/jpeg',
   }
 },
