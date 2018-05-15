@@ -98,6 +98,6 @@ require('./routes/reset.js')(app);
 
 app.listen(port, function(err) {
   if(err) {
-   console.log("Error : ", err)
+   console.log("Error : ", err);
   }
 });

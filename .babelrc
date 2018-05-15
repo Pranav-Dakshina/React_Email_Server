@@ -8,6 +8,6 @@
   ],
   "plugins": [
     "react-html-attrs",
-    "transform-class-properties",
-  ],
+    "transform-class-properties"
+  ]
 }
