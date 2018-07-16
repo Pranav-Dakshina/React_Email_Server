@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -8,13 +7,6 @@ const session = require('express-session');
 // const webpackHotMiddleware = require('webpack-hot-middleware');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
-// const corsMiddleware = require('cors-prefetch-middleware');
-// import corsPrefetch from 'cors-prefetch-middleware';
-const config = require('./webpack.config.js');
-
-// const Comb = require('csscomb');
-// var comb = new Comb('zen');
-// comb.processPath('./public/css');
 
 require('./database.js');
 
@@ -25,32 +17,6 @@ var port = 8080;
 // process.env.NODE_ENV = 'production';
 // process.env.NODE_ENV = 'development';
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-// if (process.env.NODE_ENV !== "production") {
-//     console.log('development');
-//     const compiler = webpack(config);
-//     const middleware = webpackMiddleware(compiler,
-//       {
-//         publicPath: config.output.publicPath,
-//         contentBase: 'src',
-//         stats:
-//         {
-//           colors: true,
-//           hash: false,
-//           timings: true,
-//           chunks: false,
-//           chunkModules: false,
-//           modules: false
-//         },
-//       });
-//
-//     app.use(middleware);
-//     app.use(webpackHotMiddleware(compiler));
-// }
-// app.get('*', function response(req, res) {
-//   res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
-//   res.end();
-// });
 
 app.use(express.static('./public/css'));
 app.use(express.static('./public/fonts'));
@@ -98,6 +64,6 @@ require('./routes/reset.js')(app);
 
 app.listen(port, function(err) {
   if(err) {
-   console.log("Error : ", err)
+   console.error("Error : ", err)
   }
 });

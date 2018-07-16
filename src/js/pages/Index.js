@@ -30,8 +30,8 @@ class Index extends React.Component {
     return (
       <div>
         <div>
-          <img id="bg" src="backs2.jpeg" alt="" />
-          <canvas id="rain" />
+          <img id="bg" src="back3.jpg" alt="" />
+          <canvas id="rain" class="d-none" />
         </div>
         <Header />
         <Switch>

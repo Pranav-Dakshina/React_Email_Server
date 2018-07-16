@@ -22,7 +22,7 @@ export default class Footer extends React.Component {
           <Modal isOpen={this.state.toggleAbout} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>About</ModalHeader>
             <ModalBody>
-               This Website is a Email server created by Thabpet.com.
+               <p>This Website is a Email server created by Thabpet.com.</p>
             </ModalBody>
           </Modal>
           <div class="foot_cont fl_left">

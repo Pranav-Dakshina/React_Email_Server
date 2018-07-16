@@ -1,7 +1,14 @@
 
-.msgtab, .conttab, .chattab {
+.maintab {
   position: absolute;
   top: 60px;
+  height: 810px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.msgtab, .conttab, .chattab {
+  position: absolute;
+  // top: 60px;
 
   float: left;
 
@@ -10,7 +17,7 @@
 
   color: white;
   border: none;
-  background: rgba(0, 0, 0, 0.6);
+  // background: rgba(0, 0, 0, 0.6);
 }
 
 .msgtab {

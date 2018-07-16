@@ -22,11 +22,11 @@ export default function reducer(state = {
   },
   fetching: null,
   fetched: null,
-  verify: null,
+  verify: true,
   message: null,
   sending: null,
   sent: null,
-  error: null,
+  error: null
 }, action)
 {
   switch (action.type)
@@ -124,6 +124,8 @@ export default function reducer(state = {
           },
           fetching: null,
           fetched: null,
+          verify: true,
+          message: null,
           sending: null,
           sent: null,
           error: null,

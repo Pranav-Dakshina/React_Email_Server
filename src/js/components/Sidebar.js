@@ -99,17 +99,17 @@ class Sidebar extends React.Component {
 
     return (
       <Fragment>
-        <i class="fa fa-pencil fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.props.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-pencil-alt fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.props.ComposeMail} onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleComposeToolTip ? ComposeTooltip : <div></div>}
-        <i class="fa fa-inbox fs_30 msgtab_icon_bot" id="inbox" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-envelope fs_30 msgtab_icon_bot" id="inbox" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleInboxToolTip ? InboxTooltip : <div></div>}
-        <i class="fa fa-paper-plane fs_28 msgtab_icon_bot" id="sent" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-paper-plane fs_30 msgtab_icon_bot" id="sent" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleSentToolTip ? SentTooltip : <div></div>}
-        <i class="fa fa-file-text fs_28 msgtab_icon_bot" id="drafts" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-file-alt fs_30 msgtab_icon_bot" id="drafts" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleDraftsToolTip ? DraftsTooltip : <div></div>}
-        <i class="fa fa-trash fs_30 msgtab_icon_bot" id="trash" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-trash fs_30 msgtab_icon_bot" id="trash" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleTrashToolTip ? TrashTooltip : <div></div>}
-        <i class="fa fa-shield fs_30 msgtab_icon_bot" id="spam" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
+        <i class="fas fa-minus-circle fs_30 msgtab_icon_bot" id="spam" aria-hidden="true" onMouseEnter={this.ToolTip} onMouseLeave={this.ToolTip}></i>
           {this.state.toggleSpamToolTip ? SpamTooltip : <div></div>}
       </Fragment>
     )

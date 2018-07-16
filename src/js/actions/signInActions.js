@@ -30,6 +30,16 @@ export const sendMail = (data) => (
   }
 )
 
+export const signinVerify = () => (
+  (dispatch) => {
+    dispatch(
+      {
+        type: "RESET_FULFILLED"
+      }
+    )
+  }
+)
+
 export const reset = () => (
   (dispatch) => {
     dispatch(

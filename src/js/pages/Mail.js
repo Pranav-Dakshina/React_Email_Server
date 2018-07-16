@@ -127,7 +127,7 @@ export default class Mail extends React.Component {
     return (
       <Fragment>
         <Search handleFilter={this.handleFilter}/>
-        <div>
+        <div class="maintab w-100">
           <div class="msgtab">
              <Sidebar ComposeMail={this.ComposeMail} />
           </div>
