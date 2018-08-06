@@ -7,6 +7,7 @@ const session = require('express-session');
 // const webpackHotMiddleware = require('webpack-hot-middleware');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
+const socket = require('socket.io');
 
 require('./database.js');
 
@@ -62,8 +63,14 @@ require('./routes/login.js')(app);
 require('./routes/signup.js')(app);
 require('./routes/reset.js')(app);
 
-app.listen(port, function(err) {
+const server = app.listen(port, function(err) {
   if(err) {
-   console.error("Error : ", err)
+    console.error("Error : ", err)
   }
+});
+
+const io = socket(server)
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
 });

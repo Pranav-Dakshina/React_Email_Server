@@ -12,6 +12,7 @@ import MailContent from '../components/MailContent'
 import MailView from '../components/MailView'
 import Sidebar from '../components/Sidebar'
 import Search from '../components/Search'
+import io from "socket.io-client";
 
 @connect((store) => {
   return {
@@ -48,9 +49,8 @@ export default class Mail extends React.Component {
     super(props);
 
     document.title = 'Mail';
-    // console.log("Naviagator : ", navigator);
-    // console.log("Location : ", location);
-    // console.log("window : ", window);
+
+    this.socket = io('localhost:8080')
   }
 
   ComposeMail = () => {
@@ -131,7 +131,7 @@ export default class Mail extends React.Component {
           <div class="msgtab">
              <Sidebar ComposeMail={this.ComposeMail} />
           </div>
-          <div class="conttab">
+          <div class="conttab d-flex flex-column-reverse">
              {this.state.content.map((cont,index) => {
                return (
                  <MailContent cont={cont} key={index} ind={index} />
