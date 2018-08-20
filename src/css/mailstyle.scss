@@ -1,20 +1,18 @@
-
 .maintab {
   position: absolute;
   top: 60px;
-  height: 810px;
+  height: 860px;
   background: rgba(0, 0, 0, 0.6);
 }
 
-.msgtab, .conttab, .chattab {
+.chattab,
+.conttab,
+.msgtab {
   position: absolute;
   // top: 60px;
-
   float: left;
-
-  height: 800px;
+  height: 840px;
   padding: 10px;
-
   color: white;
   border: none;
   // background: rgba(0, 0, 0, 0.6);
@@ -27,21 +25,18 @@
 .conttab {
   margin-top: 10px;
   left: 50px;
-
   overflow-y: scroll;
-
   width: 28.5%;
 
   &::-webkit-scrollbar-track {
-    margin-top: 0px;
-
+    margin-top: 0;
+    margin-bottom: 15px;
     border-radius: 10px;
     background-color: transparent;
   }
 
   &::-webkit-scrollbar {
     width: 10px;
-
     border-radius: 10px;
     background-color: transparent;
   }
@@ -52,11 +47,11 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   }
 }
-
 @media (max-width: 1080px) {
   .conttab {
     width: 57% !important;
   }
+
   .mail_cont {
     width: 510px !important;
   }
@@ -65,6 +60,7 @@
 .dp_down {
   border: none !important;
   background: transparent !important;
+
   &:focus {
     box-shadow: none !important;
   }
@@ -74,60 +70,48 @@
   width: 520px;
   margin-bottom: 5px;
   padding: 5px 15px;
-
   border-radius: 4px;
   background: white;
 }
 
 .mail_cont_addr {
   font-weight: bold;
-
   color: black;
 }
 
 .mail_cont_subj {
   font-weight: 700;
-
   color: #274B91;
 }
 
 .clearfix {
   clear: both;
-
   content: '';
 }
 
 .mail_view {
   position: fixed;
-  top: 60px;
-  left: 590px;
-
+  top: 70px;
+  left: 605px;
   overflow: hidden;
-
-  width: 50%;
-  height: 800px;
+  height: 840px;
   padding: 10px;
-
   color: black;
   background: white;
 }
-
 @media (max-width: 1080px) {
   .mail_view {
-    left: 50px !important;
-
-    width: 95% !important;
+    left: 58px !important;
+    width: 93% !important;
   }
 }
 
 .chattab {
   position: fixed;
   top: 60px;
-  right: 0px;
-
+  right: 0;
   width: 19%;
 }
-
 @media (max-width: 1080px) {
   .chattab {
     width: 37.5% !important;
@@ -137,7 +121,6 @@
 .chatback {
   background-color: white;
 }
-
 // .chatname {
 //   font-size: 2rem;
 //   color: black;
@@ -153,21 +136,18 @@
 
 .mail_view_html {
   overflow: scroll;
-
   height: 660px;
   margin-top: 10px;
 
   &::-webkit-scrollbar-track {
     width: 20px;
     margin-top: 10px;
-
     border-radius: 10px;
     background-color: transparent;
   }
 
   &::-webkit-scrollbar {
     width: 10px;
-
     border-radius: 10px;
     background-color: transparent;
   }
@@ -176,11 +156,10 @@
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     // background-color: rgba(255, 255, 255, 0.8);
-
     @include bg-color(0.6);
+
     &:hover {
       box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-
       @include bg-color(1);
     }
   }
@@ -188,9 +167,7 @@
 
 .drag_par {
   position: absolute;
-
   display: block;
-
   width: 100%;
   height: 100%;
 }
@@ -200,25 +177,21 @@
   z-index: 15;
   top: 50%;
   left: 50%;
-
   width: 400px;
   height: 500px;
   margin-top: -250px;
   margin-left: -200px;
-
   box-shadow: outset 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .new_mail_cont {
   width: 100%;
-  padding: 0px 0px 10px;
-
+  padding: 0 0 10px;
   background: white;
 }
 
 .head_top_title {
   float: left;
-
   width: 87%;
   margin-left: 5px;
   padding: 5px;
@@ -226,10 +199,8 @@
 
 .head_top_icon {
   float: left;
-
   width: 5%;
-  padding: 5px 5px;
-
+  padding: 5px;
   cursor: pointer;
 }
 
@@ -239,9 +210,7 @@
 
 .head_top {
   float: left;
-
   width: 100%;
-
   color: white;
   background: rgba(0, 0, 0, 0.8);
 }
@@ -274,7 +243,6 @@
   height: 200px;
   margin: 5px;
   padding: 5px;
-
   resize: none;
 }
 
@@ -286,23 +254,26 @@
   position: absolute;
   top: -8px;
   right: 10px;
-
   opacity: 0.5;
 }
 
 .fs_30 {
   font-size: 35px !important;
 }
+
 .fs_28 {
   font-size: 28px !important;
 }
+
 .msgtab_icon_bot {
   width: 30px;
   height: 35px;
   margin-top: 10px;
 }
 
-#drafts, #spam, #trash {
+#drafts,
+#spam,
+#trash {
   margin-left: 3px;
   /*margin-top: 13px !important;*/
 }
@@ -310,16 +281,14 @@
 .msg {
   margin: 10px 10px 0 10px !important;
   padding: 10px;
-
   -webkit-border-radius: 10px;
-     -moz-border-radius: 10px;
-          border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   background: rgba(0, 0, 0, 0.4);
 }
 
 .msg_img {
   float: left;
-
   width: max-content;
   margin: 0 10px;
 }
@@ -337,7 +306,6 @@
   width: 70%;
   margin: 12px 0 7px 7px;
   padding: 5px;
-
   border: none;
   border-radius: 5px;
   outline: none;
@@ -346,9 +314,8 @@
 
 #search:focus {
   -webkit-transition: all 0.3s ease-in-out;
-     -moz-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;
-
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   color: #777777;
   background: #FFFFFF;
 }
@@ -365,12 +332,10 @@
   //
   // max-width: 400px;
   height: 35px;
-  padding: 5px 0px !important;
-
+  padding: 5px 0 !important;
   color: white !important;
   background-color: transparent !important;
 }
-
 @media (max-width: 800px) {
   .srch {
     // float: left;
@@ -384,16 +349,14 @@
   height: 30px;
   margin: 13px 5px 5px 0;
   padding: 7px 10px 5px;
-
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
 #search:focus + #img_srch:hover {
   -webkit-transition: all 0.3s ease-in-out;
-     -moz-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;
-
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background: rgba(225, 225, 225, 0.3);
 }
 

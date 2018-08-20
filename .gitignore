@@ -4,3 +4,6 @@ package-lock.json
 
 #config file
 config/secret.json
+
+#Minified react script
+client.min.js

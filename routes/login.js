@@ -53,7 +53,6 @@ module.exports = function(app) {
           console.log("IP submit failed : ", error);
         });
 
-        res.json({content: user.content, verify: true, message: "", firstname: user.firstname, lastname: user.lastname});
 
         var emailDate = new Date().getTime();
         var mailListener = new MailListener({
@@ -80,8 +79,9 @@ module.exports = function(app) {
           mailListener.start();
         });
         mailListener.on("mail", function(mail, seqno, attributes){
-          console.log("Mail From ", mail.form)
+          console.log("Mail From ", mail)
         })
+        res.json({content: user.content, verify: true, message: "", firstname: user.firstname, lastname: user.lastname});
       } else {
         res.json({content: [], verify: false, message: info});
       }
