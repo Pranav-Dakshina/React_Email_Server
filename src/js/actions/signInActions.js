@@ -30,12 +30,33 @@ export const sendMail = (data) => (
   }
 )
 
+export const signinVerify = () => (
+  (dispatch) => {
+    dispatch(
+      {
+        type: "RESET_FULFILLED"
+      }
+    )
+  }
+)
+
 export const reset = () => (
   (dispatch) => {
     dispatch(
       {
         type: "RESET",
         payload: axios.post("/auth/signout"),
+      }
+    )
+  }
+)
+
+export const newMail = (mail) => (
+  (dispatch) => {
+    dispatch(
+      {
+        type: "NEW_MAIL",
+        payload: mail
       }
     )
   }

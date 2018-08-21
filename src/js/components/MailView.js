@@ -21,7 +21,7 @@ class MailView extends React.Component {
   render() {
     const { cont } = this.props
     return (
-      <div class="mail_view display_block z-8" >
+      <div class="mail_view display_block z-8 rounded" >
         <div class="wid fl_left">
           <h2 class="wid_90 fl_left">{cont.subject}</h2>
           <a class="fl_left close_sign cur_pt fs_30" onClick={this.mailViewRemove}>&times;</a>

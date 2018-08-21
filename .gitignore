@@ -1,2 +1,9 @@
 node_modules
 npm-debug.log
+package-lock.json
+
+#config file
+config/secret.json
+
+#Minified react script
+client.min.js

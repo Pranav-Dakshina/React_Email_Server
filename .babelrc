@@ -2,11 +2,12 @@
   "presets": [
     "@babel/preset-react",
     "@babel/preset-env",
-    "@babel/preset-stage-0"
+    ["@babel/preset-stage-0", {
+      "decoratorsLegacy": true
+    }]
   ],
   "plugins": [
     "react-html-attrs",
     "transform-class-properties",
-    "transform-decorators-legacy",
   ],
 }

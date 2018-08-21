@@ -2,6 +2,8 @@ export default function reducer(state = {
   user:
   {
     id: null,
+    firstname: null,
+    lastname: null,
     username: null,
     password: null,
     img: {
@@ -20,10 +22,11 @@ export default function reducer(state = {
   },
   fetching: null,
   fetched: null,
-  verify: null,
+  verify: true,
+  message: null,
   sending: null,
   sent: null,
-  error: null,
+  error: null
 }, action)
 {
   switch (action.type)
@@ -51,10 +54,14 @@ export default function reducer(state = {
           fetching: false,
           fetched: true,
           verify: action.payload.data.verify,
+          message: action.payload.data.message,
           user:
           {
             ...state.user,
             content: action.payload.data.content,
+            firstname: action.payload.data.firstname,
+            lastname: action.payload.data.lastname,
+            password: null,
           }
         }
       }
@@ -117,11 +124,26 @@ export default function reducer(state = {
           },
           fetching: null,
           fetched: null,
+          verify: true,
+          message: null,
           sending: null,
           sent: null,
           error: null,
         }
       }
+    case "NEW_MAIL" :
+    {
+      let newContent = state.user.content.slice()
+      newContent.push(action.payload)
+      return {
+        ...state,
+        user:
+        {
+          ...state.user,
+          content: newContent,
+        }
+      }
+    }
 
   }
 
