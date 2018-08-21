@@ -60,6 +60,10 @@ require('./routes/login.js')(app);
 require('./routes/signup.js')(app);
 require('./routes/reset.js')(app);
 
+process.on('uncaughtException', function (err) {
+  console.log(err);
+})
+
 const server = app.listen(port, function(err) {
   if(err) {
     console.error("Error : ", err)
