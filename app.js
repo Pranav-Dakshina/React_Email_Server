@@ -2,9 +2,6 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-// const webpack = require('webpack');
-// const webpackMiddleware = require('webpack-dev-middleware');
-// const webpackHotMiddleware = require('webpack-hot-middleware');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const socket = require('socket.io');
@@ -69,8 +66,8 @@ const server = app.listen(port, function(err) {
   }
 });
 
-const io = socket(server)
+var io = module.exports.io = socket(server)
 
-io.on('connection', (socket) => {
-    console.log(socket.id);
-});
+const SocketManager = require('./config/SocketManager')
+
+io.on('connection', SocketManager);

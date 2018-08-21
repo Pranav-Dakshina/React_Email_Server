@@ -1,12 +1,13 @@
+const LoginModel = require("./../models/loginModel.js");
+const bcrypt = require('bcrypt');
+const sql = require('mysql');
+const nodemailer = require('nodemailer');
+const axios = require('axios');
+const passport = require('passport');
+const fs = require('fs');
+
 module.exports = function(app)
 {
-  const LoginModel = require("./../models/loginModel.js");
-  const bcrypt = require('bcrypt');
-  const sql = require('mysql');
-  const nodemailer = require('nodemailer');
-  const axios = require('axios');
-  const passport = require('passport');
-  const fs = require('fs');
 
   app.route('/submitSignUp')
     .post(function(req, res)

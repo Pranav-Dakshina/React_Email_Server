@@ -132,7 +132,6 @@ export default class Input extends React.Component {
   }
 
   handleOnChange = (event) => {
-    console.log(this.props);
     if (this.isEmpty(event)) {
       this.error = this.props.name + " can't be empty ";
       this.setState({toggleError: true});

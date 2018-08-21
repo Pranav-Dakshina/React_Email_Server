@@ -44,7 +44,6 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.signin);
     this.props.dispatch(signinVerify())
   }
 

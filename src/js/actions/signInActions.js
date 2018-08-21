@@ -50,3 +50,14 @@ export const reset = () => (
     )
   }
 )
+
+export const newMail = (mail) => (
+  (dispatch) => {
+    dispatch(
+      {
+        type: "NEW_MAIL",
+        payload: mail
+      }
+    )
+  }
+)

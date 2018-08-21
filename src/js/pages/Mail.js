@@ -6,13 +6,15 @@ import Draggable from 'react-draggable'
 import {toast} from 'react-toastify'
 // import IdleTimer from 'react-idle-timer';
 
-import {sendMail} from '../actions/signInActions.js'
-
+import {sendMail, newMail} from '../actions/signInActions.js'
+import {NEW_MAIL} from '../../../config/Events'
 import MailContent from '../components/MailContent'
 import MailView from '../components/MailView'
 import Sidebar from '../components/Sidebar'
 import Search from '../components/Search'
 import io from "socket.io-client";
+
+const socketUrl = "localhost:8080"
 
 @connect((store) => {
   return {user: store.signin.user, sent: store.signin.sent, cont: store.mailview.content}
@@ -43,12 +45,11 @@ class Mail extends React.Component {
       view: []
     }
 
-    this.socket = io('localhost:8080')
-
     this.scrollDown = this.scrollDown.bind(this)
   }
 
   componentDidMount() {
+    this.initSocket()
     this.scrollDown()
   }
 
@@ -92,7 +93,14 @@ class Mail extends React.Component {
           break;
         }
     }
+  }
 
+  initSocket = () => {
+    this.socket = io(socketUrl)
+    this.socket.on(NEW_MAIL, (mail) => {
+      this.socket.emit("RECEIVED")
+      this.props.dispatch(newMail(mail))
+    })
   }
 
   scrollDown() {

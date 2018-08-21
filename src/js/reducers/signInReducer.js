@@ -131,6 +131,19 @@ export default function reducer(state = {
           error: null,
         }
       }
+    case "NEW_MAIL" :
+    {
+      let newContent = state.user.content.slice()
+      newContent.push(action.payload)
+      return {
+        ...state,
+        user:
+        {
+          ...state.user,
+          content: newContent,
+        }
+      }
+    }
 
   }
 

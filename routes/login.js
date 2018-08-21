@@ -1,13 +1,16 @@
-module.exports = function(app) {
-  const LoginModel = require("./../models/loginModel.js");
-  const IpLogModel = require("./../models/ipLogModel.js");
-  // const bcrypt = require('bcrypt');
-  const passport = require('passport');
-  // const fs = require('fs');
+const LoginModel = require("./../models/loginModel.js");
+const IpLogModel = require("./../models/ipLogModel.js");
+// const bcrypt = require('bcrypt');
+const passport = require('passport');
+// const fs = require('fs');
+const nodemailer = require('nodemailer');
+// const MailListener = require("mail-listener4");
+const mailListener = require('./getNewMail')
+const { NEW_MAIL } = require('../config/Events')
 
-  const nodemailer = require('nodemailer');
-  const MailListener = require("mail-listener4");
-  let transporter = {};
+let transporter = {};
+
+module.exports = function(app) {
   // import imagesUpload from 'images-upload-middleware';
 
   app.route('/auth/signin').post(function(req, res) {
@@ -30,7 +33,7 @@ module.exports = function(app) {
       // NOTE : need to change this soon
       if (user) {
         res.cookie('uid', user.id);
-        console.log("Req.session : ", req.session);
+        // console.log("Req.session : ", req.session);
         transporter = nodemailer.createTransport({
           host: 'thabpet.com', port: 587, secure: false, // true for 465, false for other ports
           auth: req.body
@@ -53,33 +56,23 @@ module.exports = function(app) {
           console.log("IP submit failed : ", error);
         });
 
-
         var emailDate = new Date().getTime();
-        var mailListener = new MailListener({
-          username: req.body.user,
-          password: req.body.pass,
-          host: "thabpet.com",
-          port: 993, // imap port
-          tls: true,
-          connTimeout: 10000, // Default by node-imap
-          authTimeout: 5000, // Default by node-imap,
-          debug: null, // Or your custom function with only one incoming argument. Default: null
-          tlsOptions: { rejectUnauthorized: false },
-          mailbox: "INBOX", // mailbox to monitor
-          searchFilter: ["NEW", "UNSEEN", ["SINCE", emailDate]], // the search filter being used after an IDLE notification has been retrieved
-          markSeen: true, // all fetched email willbe marked as seen and not fetched next time
-          fetchUnreadOnStart: true, // use it only if you want to get all unread email on lib start. Default is `false`,
-          mailParserOptions: {streamAttachments: true}, // options to be passed to mailParser lib.
-          attachments: true, // download attachments as they are encountered to the project directory
-          attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments
-        });
-        mailListener.start();
-        mailListener.on("server:disconnected", function(){
+        var mailListen = mailListener({...req.body, emailDate})
+        mailListen.start();
+        mailListen.on("server:disconnected", function(){
           console.log("imapDisconnected");
-          mailListener.start();
+          mailListen.start();
         });
-        mailListener.on("mail", function(mail, seqno, attributes){
-          console.log("Mail From ", mail)
+        mailListen.on("mail", function(mail, seqno, attributes){
+          let mailmsg = {
+            to: mail.to,
+            from: mail.from,
+            subject: mail.subject,
+            html: mail.html,
+            text: mail.text
+          }
+          const io = require('../app').io
+          io.emit(NEW_MAIL, mailmsg)
         })
         res.json({content: user.content, verify: true, message: "", firstname: user.firstname, lastname: user.lastname});
       } else {
@@ -122,10 +115,10 @@ module.exports = function(app) {
   });
 
   app.route('/chgDp').post(function(req, res) {
-    console.log("Req.session : ", req.session);
-    console.log("User Id : ", req.session.user.id);
+    // console.log("Req.session : ", req.session);
+    // console.log("User Id : ", req.session.user.id);
     // const tCast = req.body.toString('base64');
-    console.log("buffer : ", req.files);
+    // console.log("buffer : ", req.files);
     const {file} = req.files
     const data = {
       img: {
