@@ -8,6 +8,7 @@ import {toast} from 'react-toastify'
 
 import {sendMail, newMail} from '../actions/signInActions.js'
 import {NEW_MAIL} from '../../../config/Events'
+import Chattab from '../components/Chattab'
 import MailContent from '../components/MailContent'
 import MailView from '../components/MailView'
 import Sidebar from '../components/Sidebar'
@@ -117,11 +118,6 @@ class Mail extends React.Component {
 
   render() {
     const {user} = this.props
-    const imgSrc = '/auth/' + user.username + '/profilePic';
-    const imgStyle = {
-      height: 50,
-      width: 50
-    }
 
     return (<Fragment>
       <Search handleFilter={this.handleFilter}/>
@@ -143,23 +139,7 @@ class Mail extends React.Component {
               })
               : ''
           }
-        <div class="chattab rounded-left">
-          <div class="chatback h-auto w-auto p-1 rounded">
-            <div class="w-100 d-flex flex-row">
-              <div class="p-1">
-                <img class="rounded" src={imgSrc} alt="User image" style={imgStyle}/>
-              </div>
-              <div class="d-flex flex-column">
-                <div class="mail-cont_addr pt-1 pl-1">
-                  {user.firstname}
-                </div>
-                <small class="text-success pl-1">
-                  Online
-                </small>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Chattab user={user} />
         <div class={this.state.toggleCompose
             ? "new_mail d-block"
             : "new_mail d-none"}>

@@ -64,6 +64,7 @@ module.exports = function(app) {
           mailListen.start();
         });
         mailListen.on("mail", function(mail, seqno, attributes){
+          console.log("Mail : ", mail);
           let mailmsg = {
             to: mail.to,
             from: mail.from,

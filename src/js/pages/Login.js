@@ -48,7 +48,7 @@ class Login extends React.Component {
   }
 
   handleClick = (event) => {
-    if(event.target.id == 'SignIn' || event.target.id == 'signInIcon') {
+    if (event.target.id == 'SignIn' || event.target.id == 'signInIcon') {
       this.setState({
         signInDisplay: !this.state.signInDisplay,
         signUpDisplay: false
@@ -124,7 +124,7 @@ class Login extends React.Component {
         ? this.popin
         : this.popout} noValidate="noValidate">
       <div class='login-err'>
-        { !verify && ('Incorrect Username and Password') }
+        {!verify && ('Incorrect Username and Password')}
       </div>
       <Input id='username' name='Username' type='text'/>
       <Input id='password' name='Password' type='password'/>
@@ -134,6 +134,11 @@ class Login extends React.Component {
 
   renderMain = () => {
     const {signInDisplay, signUpDisplay, tooltipSignIn, tooltipSignUp} = this.state
+    const loginStyle = (signInDisplay || signUpDisplay)
+      ? {
+        marginTop: "10%"
+      }
+      : {}
     const mainStyle = {
       height: "6rem",
       width: "18rem"
@@ -147,23 +152,22 @@ class Login extends React.Component {
       color: "white"
     }
 
-    return (
-      <div class="d-flex justify-content-center" style={(signInDisplay || signUpDisplay) ? {marginTop: "10%"} : {marginTop: "30%"} }>
-        <div class="d-flex flex-column">
-          <div>
-            <img src='Thabpet In.png' style={mainStyle}/>
+    return (<div class="login d-flex justify-content-center" style={loginStyle}>
+      <div class="d-flex flex-column">
+        <div>
+          <img src='Thabpet In.png' style={mainStyle}/>
+        </div>
+        <div class="d-flex flex-row">
+          <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
+            <i id="signInIcon" class="fas fa-sign-in-alt" style={signinStyle}></i>
+            {tooltipSignIn && this.signInTooltip()}
           </div>
-          <div class="d-flex flex-row">
-            <div name='SignIn' id='SignIn' onClick={this.handleClick} onMouseEnter={this.toggleSignInPop} onMouseLeave={this.toggleSignInPop}>
-              <i id="signInIcon" class="fas fa-sign-in-alt" style={signinStyle}></i>
-              { tooltipSignIn && this.signInTooltip() }
-            </div>
-            <div class="ml-auto mt-1" name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
-              <i id="signUpIcon" class="fas fa-user-plus" style={signupStyle}></i>
-              { tooltipSignUp && this.signUpTooltip() }
-            </div>
+          <div class="ml-auto mt-1" name='SignUp' id='SignUp' onClick={this.handleClick} onMouseEnter={this.toggleSignUpPop} onMouseLeave={this.toggleSignUpPop}>
+            <i id="signUpIcon" class="fas fa-user-plus" style={signupStyle}></i>
+            {tooltipSignUp && this.signUpTooltip()}
           </div>
         </div>
+      </div>
     </div>)
   }
 
@@ -174,7 +178,7 @@ class Login extends React.Component {
     const {apiCalled} = this.state
 
     return (<Fragment>
-      { cookies.get('uid') != null && <div><Redirect to='/mail'/></div> }
+      {cookies.get('uid') != null && <div><Redirect to='/mail'/></div>}
       {
         (apiCalled && fetching)
           ? <div>
@@ -190,8 +194,12 @@ class Login extends React.Component {
             </div>
           : <Fragment>
               {this.renderMain()}
-              {this.renderSignIn()}
-              {this.renderSignUp()}
+              <div class="d-flex justify-content-center">
+                {this.renderSignIn()}
+              </div>
+              <div class="d-flex justify-content-center">
+                {this.renderSignUp()}
+              </div>
             </Fragment>
       }
     </Fragment>)

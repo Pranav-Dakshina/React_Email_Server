@@ -47,6 +47,16 @@ canvas {
   height: 100vh;
 }
 
+.login {
+  margin-top: 15%;
+}
+
+@media (max-width: 1080px) {
+  .login {
+    margin-top: 30%;
+  }
+}
+
 .div_hd_icon {
   width: 130px;
   height: 60px;
@@ -110,11 +120,9 @@ a {
 }
 
 .form {
-  position: fixed;
-
   width: 320px;
   // margin-top: 120px;
-  margin-left: 33%;
+  // margin-left: 33%;
   padding: 20px 20px 10px 20px;
 
   text-align: center;
