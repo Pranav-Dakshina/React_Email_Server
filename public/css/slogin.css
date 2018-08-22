@@ -1,5 +1,6 @@
 @font-face {
   font-family: myFirstFont;
+
   src: url(Muskaters.ttf) format('truetype');
 }
 
@@ -16,20 +17,24 @@ body {
 }
 
 .thabpet {
+  font-family: myFirstFont;
+  font-size: 40px;
+
   color: white;
   text-shadow: 2px 2px 8px #000000;
-  font-size: 40px;
-  font-family: myFirstFont;
 }
 
 .back2 {
   position: fixed;
+  z-index: -4;
   top: 0;
   left: 0;
-  z-index: -4;
+
   display: block;
+
   width: 100%;
   height: 100%;
+
   background: rgba(0, 0, 0, 0.6);
 }
 
@@ -51,6 +56,7 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
+
   -webkit-transform: translate(-50%, -50%);
      -moz-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
@@ -63,28 +69,33 @@ body {
 }
 
 .inp {
+  font-size: 2em;
+
   display: block;
   float: left;
+
+  width: 20px;
   margin-bottom: 15px;
   margin-left: 10px;
   padding: 14px 14px 14px 22px;
-  width: 20px;
+
+  -webkit-transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
+
+  color: white;
   border: none;
   border-radius: 4px;
   background: rgba(225, 225, 225, 0.6);
-  color: white;
-  font-size: 2em;
-  -webkit-transition: all 0.3s ease-in-out;
-     -moz-transition: all 0.3s ease-in-out;
-          transition: all 0.3s ease-in-out;
 }
 
 .inp:focus, .inp2:focus {
-  background: #FFFFFF;
-  color: #777777;
   -webkit-transition: all 0.3s ease-in-out;
      -moz-transition: all 0.3s ease-in-out;
           transition: all 0.3s ease-in-out;
+
+  color: #777777;
+  background: #FFFFFF;
 }
 
 span {
@@ -98,7 +109,9 @@ span {
 
 .err-msg {
   position: relative;
+
   width: 100%;
+
   color: white;
 }
 
@@ -108,44 +121,52 @@ span {
 
 @-webkit-keyframes popin {
   from {
-    opacity: 1;
     transform: scale(1, 1);
+
+    opacity: 1;
   }
   to {
-    opacity: 0;
     transform: scale(0, 0);
+
+    opacity: 0;
   }
 }
 
 @keyframes popin {
   from {
-    opacity: 1;
     transform: scale(1, 1);
+
+    opacity: 1;
   }
   to {
-    opacity: 0;
     transform: scale(0, 0);
+
+    opacity: 0;
   }
 }
 
 @-webkit-keyframes popout {
   from {
-    opacity: 0;
     transform: scale(0, 0);
+
+    opacity: 0;
   }
   to {
-    opacity: 1;
     transform: scale(1, 1);
+
+    opacity: 1;
   }
 }
 
 @keyframes popout {
   from {
-    opacity: 0;
     transform: scale(0, 0);
+
+    opacity: 0;
   }
   to {
-    opacity: 1;
     transform: scale(1, 1);
+
+    opacity: 1;
   }
 }

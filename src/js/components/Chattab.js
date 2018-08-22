@@ -17,8 +17,8 @@ class Chattab extends React.Component {
       width: 50
     }
     return (
-      <div class="chattab rounded-left">
-        <div class="chatback h-auto w-auto p-1 rounded">
+      <div class="chattab ml-auto">
+        <div class="chatback h-auto w-auto p-1 ml-2 rounded">
           <div class="w-100 d-flex flex-row">
             <div class="p-1">
               <img class="rounded" src={imgSrc} alt="User image" style={imgStyle}/>

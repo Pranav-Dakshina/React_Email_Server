@@ -7,7 +7,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.chattab, .conttab, .msgtab {
+.chattab, .msgtab {
   height: 840px;
 
   border: none;
@@ -15,17 +15,21 @@
 
 .msgtab {
   width: 55px;
-
   padding: 10px;
+
   color: white;
 }
 
 .conttab {
   overflow-y: scroll;
-  color: black;
 
   width: 540px;
+  min-width: 540px;
+  height: fit-content;
+  max-height: 840px;
   margin-top: 10px;
+
+  color: black;
 
   &::-webkit-scrollbar-track {
     margin-top: 0;
@@ -50,11 +54,11 @@
 }
 @media (max-width: 1080px) {
   .conttab {
-    width: 57% !important;
+    // width: 57% !important;
   }
 
   .mail-cont {
-    width: 510px !important;
+    // width: 510px !important;
   }
 }
 
@@ -68,13 +72,14 @@
 }
 
 .mail-cont {
+  display: flow-root;
+
   width: 520px;
   margin-bottom: 5px;
   padding: 5px 15px;
 
   border-radius: 4px;
   background: white;
-  display: flow-root;
 }
 
 .mail-cont-subject {
@@ -88,39 +93,34 @@
 }
 
 .mail-view {
-  margin: 10px 10px 10px 6px;
   height: 840px;
-  padding: 10px;
+  margin: 10px 4px 10px 8px;
 
   color: black;
   background: white;
 }
 @media (max-width: 1080px) {
   .mail-view {
-    left: 58px !important;
-
-    width: 93% !important;
+    width: 100%;
+    padding-left: 65px;
   }
 }
 
 .chattab {
-  width: 19%;
+  width: 360px;
+  min-width: 360px;
   margin-top: 10px;
   padding-right: 10px;
 }
 @media (max-width: 1080px) {
   .chattab {
-    width: 37.5% !important;
+    width: 370px;
   }
 }
 
 .chatback {
   background-color: white;
 }
-// .chatname {
-//   font-size: 2rem;
-//   color: black;
-// }
 
 .z-4 {
   z-index: 4;
@@ -263,8 +263,9 @@
 }
 
 .close-sign {
-  opacity: 0.5;
   margin-top: -15px;
+
+  opacity: 0.5;
 }
 
 .fs-30 {
@@ -314,7 +315,7 @@
 
 #search {
   width: 70%;
-  margin: 12px 0 7px 7px;
+  margin: 12px 0 7px 0;
   padding: 5px;
 
   border: none;

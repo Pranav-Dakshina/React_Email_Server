@@ -50,6 +50,7 @@ class Mail extends React.Component {
   }
 
   componentDidMount() {
+    console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
     this.initSocket()
     this.scrollDown()
   }

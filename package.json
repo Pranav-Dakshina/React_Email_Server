@@ -88,7 +88,8 @@
     "start": "nodemon app.js",
     "dev": "webpack --mode development ./src/js/client.js --output ./src/client.min.js --watch --progress",
     "prod": "webpack --mode production ./src/js/client.js --output ./src/client.min.js --progress",
-    "lint": "./node_modules/.bin/eslint src --ext .js,.jsx --color"
+    "lint": "./node_modules/.bin/eslint src --ext .js,.jsx --color",
+    "csscomb": "csscomb src"
   },
   "author": {
     "name": "Sreenivasa SB Ayyalasomayajula & Pranav Dakshinamurthy",
