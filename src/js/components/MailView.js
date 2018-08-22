@@ -21,7 +21,7 @@ class MailView extends React.Component {
   render() {
     const { cont } = this.props
     return (
-      <div class="mail-view flex-grow-1 d-block z-8 rounded" >
+      <div class="mail-view flex-grow-1 py-3 pl-5 pr-3 rounded" >
         <div class="d-flex">
           <h2 class="flex-grow-1">{cont.subject}</h2>
           <a class="close-sign cursor-pointer fs-30" onClick={this.mailViewRemove}>&times;</a>
@@ -32,9 +32,9 @@ class MailView extends React.Component {
                                : cont.from[0].address}
           </strong>
         </div>
-        <div class="d-flex">
+        <div>
           <strong>
-            To:
+            To:&nbsp;
           </strong>
           <a>
              {cont.to.map((to, index) => {
@@ -43,7 +43,7 @@ class MailView extends React.Component {
              })}
           </a>
         </div>
-        <div class="mail-view-html" dangerouslySetInnerHTML={{ __html: cont.html }} >
+        <div class="mail-view-html p-2 mt-3" dangerouslySetInnerHTML={{ __html: cont.html }} >
         </div>
       </div>
     )

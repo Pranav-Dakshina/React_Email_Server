@@ -19,16 +19,6 @@ export default class MailContent extends React.Component {
   render() {
     const { cont } = this.props;
 
-    const bodyStyle = {
-      overflow: 'auto',
-      width: '800',
-      height: '600',
-    };
-
-    const bSize = {
-      fontSize: '40',
-    };
-
     const imgStyle = {
       width: 50,
       height: 50,
@@ -36,14 +26,14 @@ export default class MailContent extends React.Component {
     };
 
     return (
-      <div class="mail_cont float-left" onClick={this.mailViewAdd}>
-         <img class="float-left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
-         <div class="float-left" id="mail_cont_det">
-           <div class="mail_cont_addr">
+      <div class="mail-cont" onClick={this.mailViewAdd}>
+          <img class="float-left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
+         <div class="float-left ml-2">
+           <div>
              {cont.from[0].name ? cont.from[0].name
                                 : cont.from[0].address}
            </div>
-           <div class="mail_cont_subj">
+           <div class="mail-cont-subject">
              {cont.subject}
            </div>
          </div>

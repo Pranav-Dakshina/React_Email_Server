@@ -44,13 +44,13 @@ export default class MailContent extends React.Component {
 
     return (
       <div>
-        <div class="mail_cont float-left" onClick={this.mailViewTrue}>
+        <div class="mail-cont float-left" onClick={this.mailViewTrue}>
            <img class="float-left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
-           <div class="float-left" id="mail_cont_det">
-             <div class="mail_cont_addr">
+           <div class="float-left" id="mail-cont_det">
+             <div class="mail-cont_addr">
                {cont.from[0].name}
              </div>
-             <div class="mail_cont_subj">
+             <div class="mail-cont-subject">
                {cont.subject}
              </div>
            </div>

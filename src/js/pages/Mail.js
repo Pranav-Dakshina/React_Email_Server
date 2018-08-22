@@ -150,7 +150,7 @@ class Mail extends React.Component {
                 <img class="rounded" src={imgSrc} alt="User image" style={imgStyle}/>
               </div>
               <div class="d-flex flex-column">
-                <div class="mail_cont_addr pt-1 pl-1">
+                <div class="mail-cont_addr pt-1 pl-1">
                   {user.firstname}
                 </div>
                 <small class="text-success pl-1">
@@ -169,14 +169,14 @@ class Mail extends React.Component {
             <div class="head_top_icon" onClick={this.composeMail}>&times;</div>
           </div>
           <div class="clearfix"/>
-          <div class="new_mail_cont">
+          <div class="new_mail-cont">
             <input class="head_send head_inp" name="to" type="text" onChange={this.handleOnChange} placeholder="To"/>
             <input class="head_send head_inp" name="subject" type="text" onChange={this.handleOnChange} placeholder="Subject"/>
             <div>
               <textarea class="head_inp head_body" name="message" onChange={this.handleOnChange} placeholder="Message"/>
             </div>
           </div>
-          <div class="new_mail_cont pd_left_80 bor_bottom">
+          <div class="new_mail-cont pd_left_80 bor_bottom">
             <Button color="success" onClick={this.submitMail}>Send</Button>
           </div>
         </div>

@@ -9,20 +9,22 @@
 
 .chattab, .conttab, .msgtab {
   height: 840px;
-  padding: 10px;
 
-  color: white;
   border: none;
 }
 
 .msgtab {
   width: 55px;
+
+  padding: 10px;
+  color: white;
 }
 
 .conttab {
   overflow-y: scroll;
+  color: black;
 
-  width: 560px;
+  width: 540px;
   margin-top: 10px;
 
   &::-webkit-scrollbar-track {
@@ -51,7 +53,7 @@
     width: 57% !important;
   }
 
-  .mail_cont {
+  .mail-cont {
     width: 510px !important;
   }
 }
@@ -65,24 +67,17 @@
   }
 }
 
-.mail_cont {
+.mail-cont {
   width: 520px;
   margin-bottom: 5px;
   padding: 5px 15px;
 
   border-radius: 4px;
   background: white;
+  display: flow-root;
 }
 
-.mail_cont_addr {
-  font-weight: bold;
-
-  color: black;
-}
-
-.mail_cont_subj {
-  font-weight: 700;
-
+.mail-cont-subject {
   color: #274B91;
 }
 
@@ -110,6 +105,8 @@
 
 .chattab {
   width: 19%;
+  margin-top: 10px;
+  padding-right: 10px;
 }
 @media (max-width: 1080px) {
   .chattab {
@@ -192,7 +189,7 @@
   box-shadow: outset 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.new_mail_cont {
+.new_mail-cont {
   width: 100%;
   padding: 0 0 10px;
 
@@ -267,6 +264,7 @@
 
 .close-sign {
   opacity: 0.5;
+  margin-top: -15px;
 }
 
 .fs-30 {
@@ -375,10 +373,6 @@
           transition: all 0.3s ease-in-out;
 
   background: rgba(225, 225, 225, 0.3);
-}
-
-#mail_cont_det {
-  margin-left: 5px;
 }
 
 button.close:focus {
