@@ -161,8 +161,8 @@ class Mail extends React.Component {
           </div>
         </div>
         <div class={this.state.toggleCompose
-            ? "new_mail display_block"
-            : "new_mail display_none"}>
+            ? "new_mail d-block"
+            : "new_mail d-none"}>
           <div class="head_top bor_top">
             <div class="head_top_title">New Mail</div>
             <div class="head_top_icon">_</div>

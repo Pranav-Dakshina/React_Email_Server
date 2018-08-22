@@ -36,9 +36,9 @@ export default class MailContent extends React.Component {
     };
 
     return (
-      <div class="mail_cont fl_left" onClick={this.mailViewAdd}>
-         <img class="fl_left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
-         <div class="fl_left" id="mail_cont_det">
+      <div class="mail_cont float-left" onClick={this.mailViewAdd}>
+         <img class="float-left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
+         <div class="float-left" id="mail_cont_det">
            <div class="mail_cont_addr">
              {cont.from[0].name ? cont.from[0].name
                                 : cont.from[0].address}

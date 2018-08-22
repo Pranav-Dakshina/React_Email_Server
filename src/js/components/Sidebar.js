@@ -99,17 +99,17 @@ class Sidebar extends React.Component {
 
     return (
       <Fragment>
-        <i class="fas fa-pencil-alt fs_30 msgtab_icon_bot" id="compose" aria-hidden="true" onClick={this.props.composeMail} onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-pencil-alt fs-30 mt-2" id="compose" aria-hidden="true" onClick={this.props.composeMail} onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleComposeToolTip ? ComposeTooltip : <div></div>}
-        <i class="fas fa-envelope fs_30 msgtab_icon_bot" id="inbox" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-envelope fs-30 mt-2" id="inbox" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleInboxToolTip ? InboxTooltip : <div></div>}
-        <i class="fas fa-paper-plane fs_30 msgtab_icon_bot" id="sent" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-paper-plane fs-30 mt-2" id="sent" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleSentToolTip ? SentTooltip : <div></div>}
-        <i class="fas fa-file-alt fs_30 msgtab_icon_bot" id="drafts" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-file-alt fs-30 msgtab-icon" id="drafts" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleDraftsToolTip ? DraftsTooltip : <div></div>}
-        <i class="fas fa-trash fs_30 msgtab_icon_bot" id="trash" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-trash fs-30 msgtab-icon" id="trash" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleTrashToolTip ? TrashTooltip : <div></div>}
-        <i class="fas fa-minus-circle fs_30 msgtab_icon_bot" id="spam" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
+        <i class="fas fa-minus-circle fs-30 msgtab-icon" id="spam" aria-hidden="true" onMouseEnter={this.toolTip} onMouseLeave={this.toolTip}></i>
           {this.state.toggleSpamToolTip ? SpamTooltip : <div></div>}
       </Fragment>
     )

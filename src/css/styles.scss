@@ -73,12 +73,12 @@ canvas {
 
 #bg {
   position: fixed;
+  z-index: -2;
   top: 0;
   left: 0;
 
   width: 100%;
   height: 100%;
-  z-index: -2;
 
   user-select: none;
 }
@@ -94,12 +94,13 @@ canvas {
   height: 45px;
   margin-top: 10px;
   margin-left: 10px;
+
+  cursor: pointer;
   /* color: white !important;
   text-shadow: 2px 2px 8px #000000;
   font-size: 40px;
   font-family: myFirstFont; */
   user-select: none;
-  cursor: pointer;
 }
 
 a {
@@ -161,7 +162,7 @@ a {
   opacity: 0.8;
 }
 
-#signUpImg:hover, #signInImg:hover, .close_sign:hover {
+#signUpImg:hover, #signInImg:hover, .close-sign:hover {
   opacity: 1;
 }
 
@@ -180,11 +181,12 @@ a {
   position: absolute;
 
   width: 150;
+  // text-shadow: 2px 2px 2px #000000;
+
+  user-select: none;
 
   color: white;
   background-color: transparent;
-  // text-shadow: 2px 2px 2px #000000;
-  user-select: none;
 }
 
 .tooltip_style {
@@ -493,7 +495,7 @@ a {
   margin-left: 6px;
 }
 
-.cur_pt {
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -510,14 +512,6 @@ a {
   width: 90%;
 }
 
-.fl_left {
-  float: left;
-}
-
-.fl_right {
-  float: right;
-}
-
 .verify_user {
   position: fixed;
 
@@ -527,14 +521,6 @@ a {
 
   border-radius: 3px;
   background-color: #EEEEEE;
-}
-
-.display_none {
-  display: none !important;
-}
-
-.display_block {
-  display: block !important;
 }
 
 @-webkit-keyframes slidedown {
@@ -549,12 +535,14 @@ a {
 @keyframes slidedown {
   from {
     -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+
     opacity: 0;
   }
   to {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+
     opacity: 1;
   }
 }
@@ -614,107 +602,90 @@ a {
 @-webkit-keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
   }
 
-  10%,
-  20% {
+  10%, 20% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
-    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
   }
 
-  30%,
-  50%,
-  70%,
-  90% {
+  30%, 50%, 70%, 90% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
-    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
   }
 
-  40%,
-  60%,
-  80% {
+  40%, 60%, 80% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
-    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
   }
 
   to {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
   }
 }
 
 @keyframes tada {
   from {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
     -webkit-transform: translate3d(0, -200%, 0);
-    transform: translate3d(0, -200%, 0);
+            transform: scale3d(1, 1, 1);
+            transform: translate3d(0, -200%, 0);
   }
 
-  10%,
-  20% {
+  10%, 20% {
     -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
-    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
   }
 
-  30%,
-  50%,
-  70%,
-  90% {
+  30%, 50%, 70%, 90% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
-    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
   }
 
-  40%,
-  60%,
-  80% {
+  40%, 60%, 80% {
     -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
-    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
   }
 
   to {
     -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: scale3d(1, 1, 1);
+            transform: translate3d(0, 0, 0);
   }
 }
 
 .tada {
   -webkit-animation-name: tada;
-  animation-name: tada;
+          animation-name: tada;
   -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+          animation-duration: 2s;
 }
 
 @keyframes dropHang {
   from {
     -webkit-transform: translate3d(0, -400%, 0);
-    transform: translate3d(0, -400%, 0);
+            transform: translate3d(0, -400%, 0);
   }
   40% {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
-  50%,
-  70%,
-  90% {
+  50%, 70%, 90% {
     -webkit-transform: rotate3d(0, 0, 1, -10deg);
-    transform: rotate3d(0, 0, 1, -10deg);
+            transform: rotate3d(0, 0, 1, -10deg);
   }
-  60%,
-  80%,
-  to {
+  60%, 80%, to {
     -webkit-transform: rotate3d(0, 0, 1, 10deg);
-    transform: rotate3d(0, 0, 1, 10deg);
+            transform: rotate3d(0, 0, 1, 10deg);
   }
-
 }
 
 .dropHang {
   -webkit-animation-name: dropHang;
-  animation-name: dropHang;
+          animation-name: dropHang;
   -webkit-animation-duration: 2s;
-  animation-duration: 2s;
+          animation-duration: 2s;
 }

@@ -134,10 +134,10 @@ module.exports = function(app) {
       _id: req.session.user.id
     }, data, function(err, raw) {
       if (err) {
-        console.log("Error : ", err);
+        console.error("Error : ", err);
         res.send(err);
       }
-      console.log("Success : ", raw);
+      // console.log("Success : ", raw);
       // res.send(raw);
     })
     res.status(200).send();
@@ -150,7 +150,7 @@ module.exports = function(app) {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return console.log("Trasnporter Error : ", error);
+        return console.log("Transporter Error : ", error);
       }
       console.log('Message sent: %s', info.messageId);
       // Preview only available when sending through an Ethereal account
@@ -167,6 +167,7 @@ module.exports = function(app) {
   });
 
   app.get('/mail', function(req, res) {
+    console.log("Req.session: ", req.session);
     res.render('index');
   });
 

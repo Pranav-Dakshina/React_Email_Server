@@ -203,7 +203,7 @@ export default class Input extends React.Component {
   render() {
 
     return (
-      <div class="fl_left">
+      <div class="float-left">
         <div class={this.divStyle}>
           <label class={this.state.toggleFocus
             ? "labelText label_focus"
@@ -222,8 +222,8 @@ export default class Input extends React.Component {
           {this.error}
         </div>
         <div class={this.state.toggleVerifyUser
-          ? "display_block"
-          : "display_none"}>
+          ? "d-block"
+          : "d-none"}>
           <Bubble/>
           <div class="verify_user">
             Username is {this.props.verifyUser.available
@@ -238,23 +238,23 @@ export default class Input extends React.Component {
             </div>
             <div class="popover_content">
               {this.state.toggleMinEight ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleMinEight ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"} >Minimum 8 characters</div>
+              <div class={this.state.toggleMinEight ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"} >Minimum 8 characters</div>
             </div>
             <div class="popover_content">
               {this.state.toggleIsLower ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleIsLower ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Atleast one Lowercase Letter</div>
+              <div class={this.state.toggleIsLower ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"}>Atleast one Lowercase Letter</div>
             </div>
             <div class="popover_content">
               {this.state.toggleIsUpper ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleIsUpper ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Atleast one Uppercase Letter</div>
+              <div class={this.state.toggleIsUpper ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"}>Atleast one Uppercase Letter</div>
             </div>
             <div class="popover_content">
               {this.state.toggleIsNum ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleIsNum ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Atleast one Number</div>
+              <div class={this.state.toggleIsNum ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"}>Atleast one Number</div>
             </div>
             <div class="popover_content">
               {this.state.toggleIsSpecial ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleIsSpecial ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Atleast one Special Characters</div>
+              <div class={this.state.toggleIsSpecial ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"}>Atleast one Special Characters</div>
             </div>
           </PopoverBody>
         </Popover>
@@ -265,11 +265,11 @@ export default class Input extends React.Component {
             </div>
             <div class="popover_content">
               {this.state.toggleMinEight ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleMinEight ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"} >Minimum 8 characters</div>
+              <div class={this.state.toggleMinEight ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"} >Minimum 8 characters</div>
             </div>
             <div class="popover_content">
               {this.state.toggleEmailValid ? <SuccessIcon/> : <ErrorIcon/> }
-              <div class={this.state.toggleEmailValid ? "fl_left popover_in_cont opac_6" : "fl_left popover_in_cont"}>Email invalid</div>
+              <div class={this.state.toggleEmailValid ? "float-left popover_in_cont opac_6" : "float-left popover_in_cont"}>Email invalid</div>
             </div>
           </PopoverBody>
         </Popover>

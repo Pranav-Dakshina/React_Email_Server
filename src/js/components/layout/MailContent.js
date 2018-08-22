@@ -44,9 +44,9 @@ export default class MailContent extends React.Component {
 
     return (
       <div>
-        <div class="mail_cont fl_left" onClick={this.mailViewTrue}>
-           <img class="fl_left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
-           <div class="fl_left" id="mail_cont_det">
+        <div class="mail_cont float-left" onClick={this.mailViewTrue}>
+           <img class="float-left" style={imgStyle} src="avatar.jpg" alt="avatar.jpg" />
+           <div class="float-left" id="mail_cont_det">
              <div class="mail_cont_addr">
                {cont.from[0].name}
              </div>
@@ -56,18 +56,18 @@ export default class MailContent extends React.Component {
            </div>
         </div>
         <div class={this.state.toggleMailView ?
-          "mail_view display_block z-8" :
-          "mail_view display_none z-4"} >
-          <div class="wid fl_left">
-            <h2 class="wid_90 fl_left">{cont.subject}</h2>
-            <a class="fl_left close_sign cur_pt fs_30" onClick={this.mailViewFalse}>&times;</a>
+          "mail-view d-block z-8" :
+          "mail-view d-none z-4"} >
+          <div class="wid float-left">
+            <h2 class="wid_90 float-left">{cont.subject}</h2>
+            <a class="float-left close-sign cursor-pointer fs-30" onClick={this.mailViewFalse}>&times;</a>
           </div>
-          <div class="wid fl_left">
+          <div class="wid float-left">
             <strong>
               {cont.from}
             </strong>
           </div>
-          <div class="wid fl_left">
+          <div class="wid float-left">
             <strong>
               <span>To: </span>
               <a>
@@ -75,7 +75,7 @@ export default class MailContent extends React.Component {
               </a>
             </strong>
           </div>
-          <div class="wid fl_left mail_view_html">
+          <div class="wid float-left mail-view-html">
             cont.body.text
           </div>
         </div>

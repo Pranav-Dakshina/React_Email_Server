@@ -16,7 +16,7 @@ export default class Footer extends React.Component {
     return (
       <footer>
         <div class="row">
-          <div class="foot_cont fl_left cur_pt" onClick={this.toggle}>
+          <div class="foot_cont float-left cursor-pointer" onClick={this.toggle}>
             About
           </div>
           <Modal isOpen={this.state.toggleAbout} toggle={this.toggle}>
@@ -25,7 +25,7 @@ export default class Footer extends React.Component {
                <p>This Website is a Email server created by Thabpet.com.</p>
             </ModalBody>
           </Modal>
-          <div class="foot_cont fl_left">
+          <div class="foot_cont float-left">
             <p>Copyright &copy; Thabpet.com</p>
           </div>
         </div>
