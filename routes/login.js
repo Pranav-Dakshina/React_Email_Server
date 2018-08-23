@@ -59,12 +59,15 @@ module.exports = function(app) {
         var emailDate = new Date().getTime();
         var mailListen = mailListener({...req.body, emailDate})
         mailListen.start();
+        mailListen.on("server:connected", function(){
+          console.log("second imapConnected");
+        });
         mailListen.on("server:disconnected", function(){
-          console.log("imapDisconnected");
+          console.log("second imapDisconnected");
           mailListen.start();
         });
         mailListen.on("mail", function(mail, seqno, attributes){
-          console.log("Mail : ", mail);
+          console.log("Mail : ", mail.recievedDate);
           let mailmsg = {
             to: mail.to,
             from: mail.from,
@@ -74,6 +77,7 @@ module.exports = function(app) {
           }
           const io = require('../app').io
           io.emit(NEW_MAIL, mailmsg)
+          io.emit("TESTING", mail)
         })
         res.json({content: user.content, verify: true, message: "", firstname: user.firstname, lastname: user.lastname});
       } else {

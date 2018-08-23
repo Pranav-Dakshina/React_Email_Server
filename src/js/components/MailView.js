@@ -21,7 +21,8 @@ class MailView extends React.Component {
   render() {
     const { cont } = this.props
     return (
-      <div class="mail-view flex-grow-1 py-3 pl-5 pr-3 rounded" >
+      <div class="mail-view  flex-grow-1 ">
+      <div class="mail-view-in py-3 pl-5 pr-3 rounded" >
         <div class="d-flex">
           <h2 class="flex-grow-1">{cont.subject}</h2>
           <a class="close-sign cursor-pointer fs-30" onClick={this.mailViewRemove}>&times;</a>
@@ -46,6 +47,7 @@ class MailView extends React.Component {
         <div class="mail-view-html p-2 mt-3" dangerouslySetInnerHTML={{ __html: cont.html }} >
         </div>
       </div>
+    </div>
     )
   }
 }

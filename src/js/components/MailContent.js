@@ -36,6 +36,7 @@ export default class MailContent extends React.Component {
            <div class="mail-cont-subject">
              {cont.subject}
            </div>
+           <div class="mail-cont-text text-muted text-truncate">{cont.text}</div>
          </div>
       </div>
     );

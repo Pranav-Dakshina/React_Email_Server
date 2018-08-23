@@ -103,6 +103,10 @@ class Mail extends React.Component {
       this.socket.emit("RECEIVED")
       this.props.dispatch(newMail(mail))
     })
+    this.socket.on("TESTING", (mail) => {
+      this.socket.emit("RECEIVED")
+      console.log(mail);
+    })
   }
 
   scrollDown() {
@@ -119,6 +123,7 @@ class Mail extends React.Component {
 
   render() {
     const {user} = this.props
+    const {content, view, toggleCompose} = this.state
 
     return (<Fragment>
       <Search handleFilter={this.handleFilter}/>
@@ -128,20 +133,18 @@ class Mail extends React.Component {
         </div>
         <div ref='conttab' class="conttab d-flex flex-column-reverse">
           {
-            this.state.content.map((cont, index) => {
+            content.map((cont, index) => {
               return (<MailContent cont={cont} key={index} ind={index}/>)
             })
           }
         </div>
           {
-            this.state.view.length > 0
-              ? this.state.view.map((cont, index) => {
-                return (<MailView cont={cont} key={index}/>)
-              })
+            view.length > 0
+              ? <MailView cont={view[view.length-1]} />
               : ''
-          }
+            }
         <Chattab user={user} />
-        <div class={this.state.toggleCompose
+        <div class={toggleCompose
             ? "new_mail d-block"
             : "new_mail d-none"}>
           <div class="head_top bor_top">

@@ -86,6 +86,10 @@
   color: #274B91;
 }
 
+.mail-cont-text {
+  width: 400px;
+}
+
 .clearfix {
   clear: both;
 
@@ -94,21 +98,29 @@
 
 .mail-view {
   height: 840px;
+  min-width: 700px;
   margin: 10px 4px 10px 8px;
 
-  color: black;
-  background: white;
+  .mail-view-in {
+    color: black;
+    background: white;
+    height: inherit;
+  }
 }
-@media (max-width: 1080px) {
+@media (max-width: 1300px) {
   .mail-view {
+    position: fixed;
+    z-index: 200;
+    padding-left: 55px;
+    padding-right: 10px;
+    margin-left: 0px;
     width: 100%;
-    padding-left: 65px;
   }
 }
 
 .chattab {
   width: 360px;
-  min-width: 360px;
+  min-width: 350px;
   margin-top: 10px;
   padding-right: 10px;
 }

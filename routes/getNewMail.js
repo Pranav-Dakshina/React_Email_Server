@@ -11,7 +11,6 @@ module.exports = ({user, pass, emailDate}) => {
     },
     mailbox: "INBOX", // mailbox to monitor
     searchFilter: [
-      "NEW",
       "UNSEEN",
       [
         "SINCE", emailDate

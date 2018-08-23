@@ -31,7 +31,6 @@ class Index extends React.Component {
       <div>
         <div>
           <img id="bg" src="Water.png" alt="" />
-          <canvas id="rain" class="d-none" />
         </div>
         <Header />
         <Switch>

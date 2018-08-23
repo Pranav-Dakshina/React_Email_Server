@@ -75,10 +75,13 @@ canvas {
   width: 400px !important;
 }
 
-.foot_cont {
+.foot-cont {
   height: 20px;
   margin: 10px;
   padding-left: 10px;
+  span {
+    text-shadow: 2px 2px 4px #000;
+  }
 }
 
 #bg {
