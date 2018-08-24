@@ -67,7 +67,7 @@ module.exports = function(app) {
           mailListen.start();
         });
         mailListen.on("mail", function(mail, seqno, attributes){
-          console.log("Mail : ", mail.recievedDate);
+          console.log("Mail : ", mail.receivedDate);
           let mailmsg = {
             to: mail.to,
             from: mail.from,
@@ -77,6 +77,9 @@ module.exports = function(app) {
           }
           const io = require('../app').io
           io.emit(NEW_MAIL, mailmsg)
+          io.on("RECEIVED", () => {
+            console.log("Received!");
+          })
           io.emit("TESTING", mail)
         })
         res.json({content: user.content, verify: true, message: "", firstname: user.firstname, lastname: user.lastname});
